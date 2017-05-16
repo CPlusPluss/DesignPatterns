@@ -45,14 +45,17 @@ personagem.
           Console.WriteLine("Mario ficou grande!");
           return new MarioGrande();
         }
+
         public MarioState pegarFlor() {
           Console.WriteLine("Mario ficou grande e com poder de fogo!");
           return new MarioFogo();
         }
+
         public MarioState pegarPena() {
           Console.WriteLine("Mario grande com capa");
           return new MarioCapa();
         }
+
         public MarioState levarDano() {
           Console.WriteLine("Mario morto");
           return new MarioMorto();
@@ -64,14 +67,17 @@ personagem.
           Console.WriteLine("Mario ganhou 1000 pontos!");
           return new MarioGrande();
         }
+
         public MarioState pegarFlor() {
           Console.WriteLine("Mario ficou com poder de fogo!");
           return new MarioFogo();
         }
+
         public MarioState pegarPena() {
           Console.WriteLine("Mario com capa");
           return new MarioCapa();
         }
+
         public MarioState levarDano() {
           Console.WriteLine("Mario morto");
           return new MarioMorto();
@@ -83,14 +89,17 @@ personagem.
           Console.WriteLine("Mario ganhou 1000 pontos!");
           return new MarioGrande();
         }
+
         public MarioState pegarFlor() {
           Console.WriteLine("Mario ficou com poder de fogo!");
           return new MarioFogo();
         }
+
         public MarioState pegarPena() {
           Console.WriteLine("Mario ganhou 1000 pontos!");
           return new MarioCapa();
         }
+
         public MarioState levarDano() {
           Console.WriteLine("Mario morto");
           return new MarioMorto();
@@ -102,14 +111,17 @@ personagem.
           Console.WriteLine("Mario ganhou 1000 pontos!");
           return new MarioGrande();
         }
+
         public MarioState pegarFlor() {
           Console.WriteLine("Mario ganhou 1000 pontos!");
           return new MarioFogo();
         }
+
         public MarioState pegarPena() {
           Console.WriteLine("Mario com capa!");
           return new MarioCapa();
         }
+
         public MarioState levarDano() {
           Console.WriteLine("Mario morto");
           return new MarioMorto();
@@ -121,15 +133,19 @@ personagem.
           Console.WriteLine("GameOver!");
           Console.WriteLine("Jogue novamente!");
         }
+
         public MarioState pegarCogumelo() {
           return new MarioPequeno().pegarCogumelo();
         }
+
         public MarioState pegarFlor() {
           return new MarioPequeno().pegarFlor();
         }
+
         public MarioState pegarPena() {
           return new MarioPequeno().pegarPena();
         }
+
         public MarioState levarDano() {
           Console.WriteLine("Mario morto");
           return new MarioPequeno().levarDano();
