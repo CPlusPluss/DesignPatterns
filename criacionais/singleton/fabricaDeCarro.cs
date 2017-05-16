@@ -26,9 +26,9 @@ namespace Singleton {
              "Total de carros Volks vendidos: " + totalCarrosVolks + "\n";
     }
 
-    public static FabricaDeCarro instancia;
+    private static FabricaDeCarro instancia;
 
-    protected FabricaDeCarro() {}
+    private FabricaDeCarro() {}
 
     public static FabricaDeCarro getInstancia() {
       if(instancia == null) {

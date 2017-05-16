@@ -22,7 +22,7 @@ personagem.
 #### Implementação
 ***
 
-1. Crie uma interface que define métodos para todos os tipos de estados internos do objeto
+1. Crie uma interface que define métodos para todos os tipos de estados internos do objeto (**State**)
 
     ```c#
     namespace State {
@@ -36,7 +36,7 @@ personagem.
     ```
 
 2. Crie classes para método definido na interface, implemente o método retornando o novo método ou estado atual do objeto, por exemplo, se o
-   Mario tiver MarioPequeno e pegarCogumelo() ele vai para o estado MarioGrande e assim por diante.
+   Mario tiver MarioPequeno e pegarCogumelo() ele vai para o estado MarioGrande e assim por diante. (**ConcreteState**)
 
     ```c#
     namespace ConcreteState {
@@ -154,7 +154,7 @@ personagem.
     }
     ``` 
 
-3. Crie o **Contexto** inicializando no construtor o estado inicial do objeto, e implemente os métodos do State variando seu próprio estado, por
+3. Crie o (**Contexto**) inicializando no construtor o estado inicial do objeto, e implemente os métodos do State variando seu próprio estado, por
    exemplo:
 
     ```c#

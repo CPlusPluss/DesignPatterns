@@ -24,7 +24,7 @@ A ideia fundamental desse padrão é possibilitar facilmente a variação do alg
 #### Implementação
 ***
 
-1. Primeiro vamos encapsular todos os algoritmos da mesma familia na interface **Strategy**.
+1. Primeiro vamos encapsular todos os algoritmos da mesma familia na interface (**Strategy**).
 
     ```c#
     namespace Strategy {
@@ -34,7 +34,7 @@ A ideia fundamental desse padrão é possibilitar facilmente a variação do alg
     }    
     ```
 
-2. Uma vez definida a classe, vamos definir as estrategias concretas (ConcreteStrategy)
+2. Uma vez definida a classe, vamos definir as estrategias concretas (**ConcreteStrategy**)
 
     ```c#
     namespace ConcreteStrategy {
@@ -58,7 +58,7 @@ A ideia fundamental desse padrão é possibilitar facilmente a variação do alg
     }
     ```
 
-3. Agora só criar o **Context** na qual a estrategia irá se aplicar
+3. Agora só criar o (**Context**) na qual a estrategia irá se aplicar
 
     ```c#
     namespace Context {

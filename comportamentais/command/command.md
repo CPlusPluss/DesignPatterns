@@ -29,7 +29,7 @@ ou coisa do tipo).
 #### Implementação
 ***
 
-1. Crie uma **Receiver** para rodar os comandos de **Command**
+1. Crie uma (**Receiver**) para rodar os comandos de **Command**
 
     ```c#
     namespace Receiver {
@@ -49,7 +49,7 @@ ou coisa do tipo).
     }
     ```
 
-2. Crie a interface **Command** que será implementada pela ConcreteCommand através do método **executa()**
+2. Crie a interface (**Command**) que será implementada pela ConcreteCommand através do método **executa()**
 
     ```c#
     namespace Command {
@@ -107,7 +107,7 @@ ou coisa do tipo).
     }
     ```
 
-4. Crie o **Invoker** que armazenará a lista de comandos através do método adiciona() executará todos os comandos da lista através do método
+4. Crie o (**Invoker**) que armazenará a lista de comandos através do método adiciona() executará todos os comandos da lista através do método
    executa()
 
     ```c#

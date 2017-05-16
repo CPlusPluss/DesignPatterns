@@ -22,7 +22,7 @@ diferentes.
 #### Implementação
 ***
 
-1. Crie a classe abstrata com a definição dos métodos que irão ser ordenados no método template()
+1. Crie a classe abstrata com a definição dos métodos que irão ser ordenados no método **template()** (**AbstractClass**)
 
     ```c#
     namespace AbstractClass {
@@ -44,7 +44,7 @@ diferentes.
     }
     ```
 
-2. Crie as classes concretas que irão implementar esse métodos ordenados no template()
+2. Crie as classes concretas que irão implementar esse métodos ordenados no template(), (**ConcreteClass**)
 
     ```c#
     namespace ConcreteClass {
