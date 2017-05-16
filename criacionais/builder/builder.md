@@ -12,17 +12,17 @@ criados com implementações distintas de cada passo.
 
 ![builder](https://cloud.githubusercontent.com/assets/14116020/26127410/9f886946-3a5f-11e7-9075-8490830e652e.png)
 
-* **Product ()**: Interface que define os objetos que devem ser construídos pelos Builders .
+* **Product (CarroModel)**: Interface que define os objetos que devem ser construídos pelos Builders.
 
-* **ConcreteProduct ()**: Implementação da interface que define os objetos que devem ser contruídos pelos builders.
+* **ConcreteProduct (...)**: Implementação da interface que define os objetos que devem ser contruídos pelos builders.
 
-* **Builder ()**: Interface que define os passos para a criação de um produto.
+* **Builder (CarroBuilder)**: Interface que define os passos para a criação de um produto.
 
-* **ConcreteBuilder ()**: Constrói um produto específico implementando a interface Builder .
+* **ConcreteBuilder (FiatBuilder, VolksBuilder)**: Constrói um produto específico implementando a interface Builder.
 
-* **Director ()**: Aciona os método de um Builder para construir um produto, constroi passo a passo em apenas um método.
+* **Director (ConcessionariaDirector)**: Aciona os método de um Builder para construir um produto, constroi passo a passo em apenas um método.
 
-* **Cliente ()**: Utiliza do Director para construir o produto.
+* **Cliente**: Utiliza do Director para construir o produto.
 
 ***
 #### Implementação
