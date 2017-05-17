@@ -11,7 +11,7 @@ A fábrica (interface) cria objetos que só serão definidos em tempo de execuç
 #### Diagrama de classe
 ***
 
-![factorymethod](https://cloud.githubusercontent.com/assets/14116020/26126433/f255d770-3a5b-11e7-8c7c-a05f22bb0adf.png)
+![factorymethod](https://cloud.githubusercontent.com/assets/14116020/26144084/dac4dc20-3abd-11e7-99fb-6ba9c1dca1c8.png)
 
 * **Factory (FabricaDeCarro)**: Classe ou interface que define a assinatura do método responsável pela criação do produto.
 Pode possuir uma implementação padrão do método de criação do produto.

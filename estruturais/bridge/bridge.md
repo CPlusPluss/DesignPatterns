@@ -12,7 +12,7 @@ padrão Bridge.
 #### Diagrama de classe
 ***
 
-![bridge](https://cloud.githubusercontent.com/assets/14116020/26134130/d2081042-3a82-11e7-9b6e-811c532bea89.png)
+![bridge](https://cloud.githubusercontent.com/assets/14116020/26143842/052a5f90-3abd-11e7-869e-2d048ab5047d.png)
 
 * **Abstraction (JanelaAbstrata)**: Define a interface de um determinado tipo de objeto.
 

@@ -11,7 +11,7 @@ Encapsula a escolha da ckasse cibcreta a ser utilizada na criação de objetos d
 #### Diagrama de classe
 ***
 
-![abstractfactory](https://cloud.githubusercontent.com/assets/14116020/26125745/9d1cb5d2-3a59-11e7-9e8d-8f3c30b645d6.png)
+![abstractfactory](https://cloud.githubusercontent.com/assets/14116020/26143928/5cff01a8-3abd-11e7-9ab7-d1286d2c7344.png)
 
 * **AbstractFactory (FabricaDeCarro)**: Interface que define as assinaturas dos métodos responsáveis pela criação dos objetos uma família.
 

@@ -10,7 +10,7 @@ criados com implementações distintas de cada passo.
 #### Diagrama de classe
 ***
 
-![builder](https://cloud.githubusercontent.com/assets/14116020/26127410/9f886946-3a5f-11e7-9075-8490830e652e.png)
+![builder](https://cloud.githubusercontent.com/assets/14116020/26144020/a177e14c-3abd-11e7-8faa-527b7544d34e.png)
 
 * **Product (CarroModel)**: Interface que define os objetos que devem ser construídos pelos Builders.
 
