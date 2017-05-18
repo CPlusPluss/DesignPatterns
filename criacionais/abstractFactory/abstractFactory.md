@@ -18,7 +18,7 @@ Encapsula a escolha da ckasse cibcreta a ser utilizada na criação de objetos d
 
 * **ProdutoConcreto (Siena, FiestaSedan, Palio, Fiesta)**: Implementação particular dessas informações um tipo/família de produto.
 
-* **Cliente**: Usa apenas as interfaces AbstractFactory e AbstractProduct.
+* **Cliente**: Usa apenas as interfaces FabricaAbstrata e ProdutoAbstrato.
 
 ***
 #### Implementação

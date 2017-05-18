@@ -14,7 +14,7 @@ Permitir a criação de uma quantidade limitada de instâncias de determinada cl
 #### Implementação
 ***
 
-1. Crie a classe Tema e pré defina os temas “Fire” e “Sky” utilizando o padrão (**Multiton**), no getInstance verifique se já existe a chave
+1. Crie a classe Tema e pré defina os temas “Fire” e “Sky” utilizando o padrão (**Multiton**), no getInstancia() verifique se já existe a chave
    passada e retorne o tema, caso não exita construa os temas e retorne.
 
     ```c#

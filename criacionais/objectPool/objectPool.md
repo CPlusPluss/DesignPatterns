@@ -10,11 +10,11 @@ Uma situação típica em que recursos limitados devem ser reutilizados é o do 
 
 ![objectpool](https://cloud.githubusercontent.com/assets/14116020/26185127/626ca292-3b5f-11e7-9e97-7a2797cb89e9.png)
 
-* **Produto (Mesa)**: Define os objetos gerenciados pelos Pools.
+* **Produto (Mesa)**: Define os objetos gerenciados pelos CompartilhamentosConcretos.
 
-* **CompartilhamentoAbstrato (Pool)**: Interface dos objetos que controlam a aquisição e a liberação dos Products.
+* **CompartilhamentoAbstrato (Pool)**: Interface dos objetos que controlam a aquisição e a liberação dos Produtos.
 
-* **CompartilhamentoConcreto (MesaPool)**: Implementação particular de um Pool que gerencia um Product específico.
+* **CompartilhamentoConcreto (MesaPool)**: Implementação particular de um CompartilhamentoAbstrato que gerencia um Produto específico.
 
 ***
 #### Implementação

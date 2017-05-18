@@ -9,17 +9,17 @@ criados com implementações distintas de cada passo.
 
 ![builder](https://cloud.githubusercontent.com/assets/14116020/26184556/20f84e22-3b5c-11e7-946a-5211bfaeef48.png)
 
-* **ProdutoAbstrato (CarroModel)**: Interface que define os objetos que devem ser construídos pelos Builders.
+* **ProdutoAbstrato (CarroModel)**: Interface que define os objetos que devem ser construídos pelos Construtores.
 
-* **ProdutoConcreto (...)**: Implementação da interface que define os objetos que devem ser contruídos pelos builders.
+* **ProdutoConcreto (...)**: Implementação da interface que define os objetos que devem ser contruídos pelos Construtores.
 
 * **ConstrutorAbstrato (CarroBuilder)**: Interface que define os passos para a criação de um produto.
 
-* **ConstrutorConcreto (FiatBuilder, VolksBuilder)**: Constrói um produto específico implementando a interface Builder.
+* **ConstrutorConcreto (FiatBuilder, VolksBuilder)**: Constrói um produto específico implementando a interface ConstrutoAbstrato.
 
-* **Diretor (ConcessionariaDirector)**: Aciona os método de um Builder para construir um produto, constroi passo a passo em apenas um método.
+* **Diretor (ConcessionariaDirector)**: Aciona os método do construtorAbstrato para construir um produto, constroi passo a passo em apenas um método.
 
-* **Cliente**: Utiliza do Director para construir o produto.
+* **Cliente**: Utiliza do Diretor para construir o produto.
 
 ***
 #### Implementação
@@ -103,7 +103,7 @@ criados com implementações distintas de cada passo.
     }
     ```
 
-3. Crie as fabricas que irão construir o produto utilizando como base a interface Builder (**ConstrutorConcreto**)
+3. Crie as fabricas que irão construir o produto utilizando como base a interface ConstrutorAbstrato (**ConstrutorConcreto**)
 
     ```c#
     namespace ConcreteBuilder {
@@ -179,7 +179,7 @@ criados com implementações distintas de cada passo.
     }
     ```
 
-5. Crie o cliente que irá usar o Director para criar seus objetos
+5. Crie o cliente que irá usar o Diretor para criar seus objetos
 
     ```c#
     class Teste {
