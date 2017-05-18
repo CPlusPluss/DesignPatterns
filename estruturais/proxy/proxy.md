@@ -1,5 +1,4 @@
 ## Proxy
-**
 
 Controlar as chamadas a um objeto através de outro objeto de mesma interface.
 
@@ -11,11 +10,11 @@ Esse padrão define um intermediário para controlar o acesso a um determinado o
 
 ![proxy](https://cloud.githubusercontent.com/assets/14116020/26187585/7df69aca-3b70-11e7-88a3-dd7d726bae1c.png)
 
-* **ComponenteAbstrato**: Interface que padroniza ComponenteReal e ComponenteIntermediario.
+* **ComponenteAbstrato (Conta)**: Interface que padroniza ComponenteReal e ComponenteIntermediario.
 
-* **ComponenteReal**: Define um tipo de objeto do domínio da aplicação.
+* **ComponenteReal (ContaPadrao)**: Define um tipo de objeto do domínio da aplicação.
 
-* **ComponenteIntermediario**: Define os objetos que controlam o acesso aos componentes reais.
+* **ComponenteIntermediario (ContaIntermediaria)**: Define os objetos que controlam o acesso aos componentes reais.
 
 * **Client**: Cliente que usa o componente real por meio do componente intermediario.
 
@@ -23,7 +22,7 @@ Esse padrão define um intermediário para controlar o acesso a um determinado o
 #### Implementação
 ***
 
-1. Defina a classe real
+1. Defina a classe real (**ComponenteReal**)
 
     ```c#
     namespace ComponenteReal {
@@ -45,7 +44,7 @@ Esse padrão define um intermediário para controlar o acesso a um determinado o
     }
     ```
 
-2. Defina a interface que irá padronizar a classe real com seu itermediario ou proxy
+2. Defina a interface que irá padronizar a classe real com seu intermediario ou proxy (**ComponenteAbstrato**)
 
     ```c#
     namespace ComponenteAbstrato {
@@ -57,7 +56,7 @@ Esse padrão define um intermediário para controlar o acesso a um determinado o
     }
     ```
 
-3. Defina o intermediario com as novas funcionalidades ou modificações
+3. Defina o intermediario com as novas funcionalidades ou modificações (**ComponenteIntermediario**)
 
     ```c#
     namespace ComponenteIntermediario {

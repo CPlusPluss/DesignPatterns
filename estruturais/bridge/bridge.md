@@ -26,7 +26,7 @@ determindas tarefas.
 #### Implementação
 ***
 
-1. Crie a interface que irá implementar as janelas de determinada plataforma (Implementador)
+1. Crie a interface que irá implementar as janelas de determinada plataforma (**Implementador**)
 
     ```c#
     namespace Implementador {
@@ -37,7 +37,7 @@ determindas tarefas.
     }
     ```
 
-2. Crie as janelas das plataformas especificas de acordo com a interface
+2. Crie as janelas das plataformas especificas de acordo com a interface (**ImplementadorConcreto**)
 
     ```c#
     namespace ImplementadorConcreto {

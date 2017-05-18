@@ -11,7 +11,7 @@ aéreas, hotéis, e etc...
 
 ![facade](https://cloud.githubusercontent.com/assets/14116020/26187299/408e468a-3b6e-11e7-9b70-7dfcd5c1d063.png)
 
-* **Fachada (sistemaFacade)**: Classe intermediária que simplifica o acesso aos Componentes.
+* **Fachada (sistemaFachada)**: Classe intermediária que simplifica o acesso aos Componentes.
 
 * **Componentes (SistemaDeAudio, SistemaDeInput, SistemaDeVideo)**: Classes que compõem o subsistema.
 
@@ -21,7 +21,7 @@ aéreas, hotéis, e etc...
 #### Implementação
 ***
 
-1. Primeiro defina as classes de subsistemas que serão utilizados no facade (**Components**)
+1. Primeiro defina as classes de subsistemas que serão utilizados no facade (**Componentes**)
 
     ```c#
     namespace Componentes {
@@ -77,7 +77,7 @@ aéreas, hotéis, e etc...
 
     ```c#
     namespace Fachada {
-      public class SistemasFachada {
+      public class SistemaFachada {
         protected SistemaDeAudio audio;
         protected SistemaDeInput input;
         protected SistemaDeVideo video;
@@ -118,7 +118,7 @@ aéreas, hotéis, e etc...
     class Testes {
       public static void Main(string[] args) {
         Console.WriteLine("#### Configurando subsistemas ####");
-        SistemasFachada fachada = new SistemasFachada();
+        SistemaFachada fachada = new SistemaFachada();
         fachada.inicializarSubsistemas();
     
         Console.WriteLine("\n#### Utilizando subsistemas ####");

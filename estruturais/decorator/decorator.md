@@ -20,7 +20,7 @@ Adiciona funcionalidade a um objeto dinamicamente.
 #### Implementação
 ***
 
-1. Defina uma interface ou classe abstrata Coquetel (**Component**)
+1. Defina uma interface ou classe abstrata Coquetel (**ComponenteAbstrato**)
 
     ```c#
     namespace ComponenteAbstrato {
