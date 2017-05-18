@@ -1,7 +1,4 @@
 ## Facade
-***
-#### Definição
-***
 
 Prove uma interface simplificada para a utilização de várias interfaces de um subsistema.
 
@@ -12,13 +9,13 @@ aéreas, hotéis, e etc...
 #### Diagrama de classe
 ***
 
-![facade](https://cloud.githubusercontent.com/assets/14116020/26124391/9f9dd048-3a54-11e7-90d4-7ea618a4cb2c.png)
+![facade](https://cloud.githubusercontent.com/assets/14116020/26187299/408e468a-3b6e-11e7-9b70-7dfcd5c1d063.png)
 
-* **Facade (sistemaFacade)**: Classe intermediária que simplifica o acesso aos Component.
+* **Fachada (sistemaFacade)**: Classe intermediária que simplifica o acesso aos Componentes.
 
-* **Component (SistemaDeAudio, SistemaDeInput, SistemaDeVideo)**: Classes que compõem o subsistema.
+* **Componentes (SistemaDeAudio, SistemaDeInput, SistemaDeVideo)**: Classes que compõem o subsistema.
 
-* **Cliente**: Classe que usa os Component de forma indireta através do Facade.
+* **Cliente**: Classe que usa os Componentes de forma indireta através da Fachada.
 
 ***
 #### Implementação
@@ -27,7 +24,7 @@ aéreas, hotéis, e etc...
 1. Primeiro defina as classes de subsistemas que serão utilizados no facade (**Components**)
 
     ```c#
-    namespace Components {
+    namespace Componentes {
       public class SistemaDeAudio {
         public void configurarFrequencia() {
           Console.WriteLine("Frequencia configurada!");
@@ -76,11 +73,11 @@ aéreas, hotéis, e etc...
     }
     ```
 
-2. Crie o sistema facade que irá simplificar a utilização desses subsistemas (**Facade**)
+2. Crie o sistema fachada que irá simplificar a utilização desses subsistemas (**Fachada**)
 
     ```c#
-    namespace Facade {
-      public class SistemasFacade {
+    namespace Fachada {
+      public class SistemasFachada {
         protected SistemaDeAudio audio;
         protected SistemaDeInput input;
         protected SistemaDeVideo video;
@@ -121,7 +118,7 @@ aéreas, hotéis, e etc...
     class Testes {
       public static void Main(string[] args) {
         Console.WriteLine("#### Configurando subsistemas ####");
-        SistemasFacade fachada = new SistemasFacade();
+        SistemasFachada fachada = new SistemasFachada();
         fachada.inicializarSubsistemas();
     
         Console.WriteLine("\n#### Utilizando subsistemas ####");

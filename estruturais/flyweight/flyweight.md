@@ -1,7 +1,4 @@
 ## Flyweight
-***
-#### Definição
-***
 
 Compartilhar, de forma eficiente, objetos que são usados em grande quantidade.
 
@@ -9,15 +6,15 @@ Compartilhar, de forma eficiente, objetos que são usados em grande quantidade.
 #### Diagrama de classe
 ***
 
-![flyweight](https://cloud.githubusercontent.com/assets/14116020/26136373/f27b35f2-3a91-11e7-939e-650bff15989b.png)
+![flyweight](https://cloud.githubusercontent.com/assets/14116020/26188147/fc6c6490-3b73-11e7-90ce-01bbeedea5d3.png)
 
-* **Flyweight (SpriteFlyweight)**: Interface que define os objetos que serão compartilhados.
+* **ComponenteAbstrato (SpriteAbstrata)**: Interface que define os objetos que serão compartilhados.
 
-* **ConcreteFlyweight (Sprite)**: Tipo específico de Flyweight.
+* **ComponenteConcreto (Sprite)**: Tipo específico de compartilhamento abstrato.
 
-* **FlyweightFactory (FlyweightFactory)**: Classe que controla a criação e recuperação de Flyweights.
+* **FabricaDeObjetosCompartilhados (FabricaDeSpritesCompartilhadas)**: Classe que controla a criação e recuperação de Componentes.
 
-* **Client**: Utiliza FlyweightFactory para recuperar os Flyweights.
+* **Client**: Utiliza a fabricaDeObjetosCompartilhados para recuperar os ComponentesConcretos.
 
 ***
 #### Implementação
@@ -26,7 +23,7 @@ Compartilhar, de forma eficiente, objetos que são usados em grande quantidade.
 1. Crie as classes modelos para as imagens e pontos do mapa, além das sprites enumeradas, não faz parte do padrão e sim da implementação.
 
     ```c#
-    public enum Sprites {
+    public enum SPRITES {
       JOGADOR, INIMIGO_1, INIMIGO_2, INIMIGO_3, CENARIO_1, CENARIO_2
     };
 
@@ -52,21 +49,21 @@ Compartilhar, de forma eficiente, objetos que são usados em grande quantidade.
     }
     ```
 
-2. Crie a interface que define os objetos que serão compartilhados (**Flyweight**).
+2. Crie a interface que define os objetos que serão compartilhados (**ComponenteAbstrato**).
 
     ```c#
-    namespace Flyweight {
-      public interface SpriteFlyweight {
+    namespace ComponenteAbstrato {
+      public interface SpriteAbstrata {
         void desenharImagem(Ponto ponto);
       }
     }
     ```
 
-3. Crie as implementações dos objetos que serão compartilhados no nosso caso sprites (**ConcreteFlyweight**)
+3. Crie as implementações dos objetos que serão compartilhados no nosso caso sprites (**ComponenteConcreto**)
 
     ```c#
-    namespace ConcreteFlyweight {
-      public class Sprite: SpriteFlyweight {
+    namespace ComponentesConcretos {
+      public class Sprite: SpriteAbstrata {
         protected Imagem imagem;
     
         public Sprite(string nomeDaImagem) {
@@ -81,37 +78,37 @@ Compartilhar, de forma eficiente, objetos que são usados em grande quantidade.
     }
     ```
 
-4. Crie a fabrica que irá controla a criação e recuperação de flyweights (**FlyweightFactory**)
+4. Crie a fabrica que irá controla a criação e recuperação de objetos compartilhados (**FabricaDeObjetosCompartilhados**)
 
     ```c#
-    namespace FlyweightFactory {
-      public class FlyweightFactory {
-        protected List<SpriteFlyweight> flyweights;
+    namespace FabricaDeObjetosCompartilhados {
+      public class FabricaDeSpritesCompartilhadas {
+        protected List<SpriteAbstrata> sprites;
     
-        public FlyweightFactory() {
-          flyweights = new List<SpriteFlyweight>();
-          flyweights.Add(new Sprite("jogador.png"));
-          flyweights.Add(new Sprite("inimigo1.png"));
-          flyweights.Add(new Sprite("inimigo2.png"));
-          flyweights.Add(new Sprite("inimigo3.png"));
-          flyweights.Add(new Sprite("cenario1.png"));
-          flyweights.Add(new Sprite("cenario2.png"));
+        public FabricaDeObjetosCompartilhados() {
+          sprites = new List<SpriteAbstrata>();
+          sprites.Add(new Sprite("jogador.png"));
+          sprites.Add(new Sprite("inimigo1.png"));
+          sprites.Add(new Sprite("inimigo2.png"));
+          sprites.Add(new Sprite("inimigo3.png"));
+          sprites.Add(new Sprite("cenario1.png"));
+          sprites.Add(new Sprite("cenario2.png"));
         }
     
-        public SpriteFlyweight getFlyweight(Sprites sprite) {
+        public SpriteAbstrata getSprite(SPRITES sprite) {
           switch (sprite) {
-            case Sprites.JOGADOR:
-              return flyweights[0];
-            case Sprites.INIMIGO_1:
-              return flyweights[1];
-            case Sprites.INIMIGO_2:
-              return flyweights[2];
-            case Sprites.INIMIGO_3:
-              return flyweights[3];
-            case Sprites.CENARIO_1:
-              return flyweights[4];
-            case Sprites.CENARIO_2:
-              return flyweights[5];
+            case SPRITES.JOGADOR:
+              return sprites[0];
+            case SPRITES.INIMIGO_1:
+              return sprites[1];
+            case SPRITES.INIMIGO_2:
+              return sprites[2];
+            case SPRITES.INIMIGO_3:
+              return sprites[3];
+            case SPRITES.CENARIO_1:
+              return sprites[4];
+            case SPRITES.CENARIO_2:
+              return sprites[5];
             default:
               throw new ArgumentException("Sprite invalida!");
           }
@@ -125,16 +122,16 @@ Compartilhar, de forma eficiente, objetos que são usados em grande quantidade.
     ```c#
     class Testes {
       public static void Main(string[] args) {
-        FlyweightFactory factory = new FlyweightFactory();
+        FabricaDeObjetosCompartilhados fabrica = new FabricaDeObjetosCompartilhados();
     
-        factory.getFlyweight(Sprites.CENARIO_1).desenharImagem(new Ponto(0, 0));
-        factory.getFlyweight(Sprites.JOGADOR).desenharImagem(new Ponto(10, 10));
-        factory.getFlyweight(Sprites.INIMIGO_1).desenharImagem(new Ponto(100, 10));
-        factory.getFlyweight(Sprites.INIMIGO_2).desenharImagem(new Ponto(120, 10));
-        factory.getFlyweight(Sprites.INIMIGO_1).desenharImagem(new Ponto(140, 10));
-        factory.getFlyweight(Sprites.INIMIGO_2).desenharImagem(new Ponto(60, 10));
-        factory.getFlyweight(Sprites.CENARIO_2).desenharImagem(new Ponto(50, 40));
-        factory.getFlyweight(Sprites.INIMIGO_3).desenharImagem(new Ponto(170, 20));
+        fabrica.getSprite(SPRITES.CENARIO_1).desenharImagem(new Ponto(0, 0));
+        fabrica.getSprite(SPRITES.JOGADOR).desenharImagem(new Ponto(10, 10));
+        fabrica.getSprite(SPRITES.INIMIGO_1).desenharImagem(new Ponto(100, 10));
+        fabrica.getSprite(SPRITES.INIMIGO_2).desenharImagem(new Ponto(120, 10));
+        fabrica.getSprite(SPRITES.INIMIGO_1).desenharImagem(new Ponto(140, 10));
+        fabrica.getSprite(SPRITES.INIMIGO_2).desenharImagem(new Ponto(60, 10));
+        fabrica.getSprite(SPRITES.CENARIO_2).desenharImagem(new Ponto(50, 40));
+        fabrica.getSprite(SPRITES.INIMIGO_3).desenharImagem(new Ponto(170, 20));
       }
     }
     ```

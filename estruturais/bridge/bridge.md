@@ -1,7 +1,4 @@
 ## Bridge
-***
-#### Definição
-***
 
 Separar uma abstração de sua representação, de forma que ambos possam variar e produzir tipos de objetos diferentes.
 
@@ -12,18 +9,18 @@ padrão Bridge.
 #### Diagrama de classe
 ***
 
-![bridge](https://cloud.githubusercontent.com/assets/14116020/26143842/052a5f90-3abd-11e7-869e-2d048ab5047d.png)
+![bridge](https://cloud.githubusercontent.com/assets/14116020/26186746/17493400-3b6a-11e7-896a-897627d02a33.png)
 
-* **Abstraction (JanelaAbstrata)**: Define a interface de um determinado tipo de objeto.
+* **Abstracao (JanelaAbstrata)**: Define a interface de um determinado tipo de objeto.
 
-* **RefinedAbstraction (JanelaDialogo, janelaAviso)**: Uma implementação particular do Abstraction que delega a um Implementor a realização de
+* **AbstracaoRefinada (JanelaDialogo, janelaAviso)**: Uma implementação particular da Abstracao que delega a um Implementador a realização de
 determindas tarefas.
 
-* **Implementor (janelaImplementada)**: Define a interface dos objetos que serão acionados pelos Abstractions .
+* **Implementador (janelaImplementada)**: Define a interface dos objetos que serão acionadas pelas Abstrações.
 
-* **ConcreteImplementor (janelaMac, janelaWindows, janelaMac)**: Uma implementação específica do Implementor
+* **ImplementadorConcreto (janelaMac, janelaWindows, janelaMac)**: Uma implementação específica do Implementador
 
-* **Client**: Interage com as Abstractions.
+* **Client**: Interage com as Abstracoes.
 
 ***
 #### Implementação
@@ -32,7 +29,7 @@ determindas tarefas.
 1. Crie a interface que irá implementar as janelas de determinada plataforma (Implementador)
 
     ```c#
-    namespace Implementor {
+    namespace Implementador {
       public interface JanelaImplementada {
         void desenharJanela(string titulo);
         void desenharBotao(string titulo);
@@ -43,7 +40,7 @@ determindas tarefas.
 2. Crie as janelas das plataformas especificas de acordo com a interface
 
     ```c#
-    namespace ConcreteImplementor {
+    namespace ImplementadorConcreto {
       public class JanelaWindows: JanelaImplementada {
         public void desenharJanela(string titulo) {
           Console.WriteLine(titulo + " - Janela Windows");
@@ -77,10 +74,10 @@ determindas tarefas.
     ```
 
 
-3. Cria a interface da janela abstrata (**Abstraction**)
+3. Cria a interface da janela abstrata (**Abstracao**)
 
     ```c#
-    namespace Abstraction {
+    namespace Abstracao {
       public abstract class JanelaAbstrata {
         protected JanelaImplementada janela;
     
@@ -101,10 +98,10 @@ determindas tarefas.
     }
     ```
 
-4. Cria as janelas abstratas de acordo com a interface definida (RefinedAbstraction)
+4. Cria as janelas abstratas de acordo com a interface definida (**AbstracaoRefinada**)
 
     ```c#
-    namespace RefinedAbstraction {
+    namespace AbstracaoRefinada {
       public class JanelaDialogo: JanelaAbstrata {
         public JanelaDialogo(JanelaImplementada janela): base(janela) {}
     

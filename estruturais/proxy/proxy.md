@@ -1,7 +1,5 @@
 ## Proxy
-***
-#### Definição
-***
+**
 
 Controlar as chamadas a um objeto através de outro objeto de mesma interface.
 
@@ -11,15 +9,15 @@ Esse padrão define um intermediário para controlar o acesso a um determinado o
 #### Diagrama de classe
 ***
 
-![proxy](https://cloud.githubusercontent.com/assets/14116020/26135427/c9ddbd32-3a8b-11e7-87b8-b4c80f9de851.png)
+![proxy](https://cloud.githubusercontent.com/assets/14116020/26187585/7df69aca-3b70-11e7-88a3-dd7d726bae1c.png)
 
-* **Subject**: Interface que padroniza RealSubject e Proxy.
+* **ComponenteAbstrato**: Interface que padroniza ComponenteReal e ComponenteIntermediario.
 
-* **RealSubject**: Define um tipo de objeto do domínio da aplicação.
+* **ComponenteReal**: Define um tipo de objeto do domínio da aplicação.
 
-* **Proxy**: Define os objetos que controlam o acesso aos RealSubjects.
+* **ComponenteIntermediario**: Define os objetos que controlam o acesso aos componentes reais.
 
-* **Client**: Cliente que usa o RealSubject por meio do Proxy.
+* **Client**: Cliente que usa o componente real por meio do componente intermediario.
 
 ***
 #### Implementação
@@ -28,7 +26,7 @@ Esse padrão define um intermediário para controlar o acesso a um determinado o
 1. Defina a classe real
 
     ```c#
-    namespace RealSubject {
+    namespace ComponenteReal {
       public class ContaPadrao: Conta {
         private double saldo = 0;
     
@@ -47,10 +45,10 @@ Esse padrão define um intermediário para controlar o acesso a um determinado o
     }
     ```
 
-2. Defina a interface que irá padronizar a classe real com seu proxy
+2. Defina a interface que irá padronizar a classe real com seu itermediario ou proxy
 
     ```c#
-    namespace Subject {
+    namespace ComponenteAbstrato {
       public interface Conta {
         void deposita(double valor);
         void saca(double valor);
@@ -59,14 +57,14 @@ Esse padrão define um intermediário para controlar o acesso a um determinado o
     }
     ```
 
-3. Defina a proxy com as novas funcionalidades ou modificações
+3. Defina o intermediario com as novas funcionalidades ou modificações
 
     ```c#
-    namespace Proxy {
-      public class ContaProxy: Conta {
+    namespace ComponenteIntermediario {
+      public class ContaIntermediaria: Conta {
         private Conta conta;
     
-        public ContaProxy(Conta conta) {
+        public ContaIntermediaria(Conta conta) {
           this.conta = conta;
         }
     
@@ -90,17 +88,17 @@ Esse padrão define um intermediário para controlar o acesso a um determinado o
     }
     ```
 
-4. Crie a main que irá utilizar a proxy para acessar a classe real
+4. Crie a main que irá utilizar a proxy ou intermediaria para acessar a classe real
 
     ```c#
     class Testes {
       public static void Main(string[] args) {
         Conta contaPadrao = new ContaPadrao();
-        Conta contaProxy = new ContaProxy(contaPadrao);
-        contaProxy.deposita(100);
-        Console.WriteLine("Saldo: " + contaProxy.getSaldo());
-        contaProxy.saca(59);
-        Console.WriteLine("Saldo: " + contaProxy.getSaldo());
+        Conta contaIntermediaria = new ContaIntermediaria(contaPadrao);
+        contaIntermediaria.deposita(100);
+        Console.WriteLine("Saldo: " + contaIntermediaria.getSaldo());
+        contaIntermediaria.saca(59);
+        Console.WriteLine("Saldo: " + contaIntermediaria.getSaldo());
       }
     }
     ```

@@ -1,7 +1,4 @@
 ## Composite
-***
-#### Definição
-***
 
 Agrupa objetos que fazem parte de uma relação parte-todo de forma a tratá-los sem distinção
 
@@ -9,33 +6,33 @@ Agrupa objetos que fazem parte de uma relação parte-todo de forma a tratá-los
 #### Diagrama de classe
 ***
 
-![composite](https://cloud.githubusercontent.com/assets/14116020/26123130/2fcb5d7a-3a50-11e7-8f0a-75f8aab125d8.png)
+![composite](https://cloud.githubusercontent.com/assets/14116020/26187144/23d7d174-3b6d-11e7-92f2-660c57843ff1.png)
 
-* **Component (Trecho)**: Interface que define os elementos da composição.
+* **ComponenteAbstrato (Trecho)**: Interface que define os elementos da composição.
 
-* **Composite (Caminho)**: Define os Components que são formados por outros Components.
+* **ComponenteComposto (Caminho)**: Define os Componentes que são formados por outros Componentes.
 
-* **Leaf (TrechoAndando, TrechoDeCarro)**: Define os elementos básicos da composição, isto é, aqueles que não são formados por outros
-Components.
+* **ComponenteConcreto (TrechoAndando, TrechoDeCarro)**: Define os elementos básicos da composição, isto é, aqueles que não são formados por outros
+Componentes.
 
 ***
 #### Implementação
 ***
 
-1. Defina a interface Trecho (**Component**):
+1. Defina a interface Trecho (**ComponenteAbstrato**):
 
     ```c#
-    namespace Component {
+    namespace ComponenteAbstrato {
       public interface Trecho {
         void imprime();
       }
     }
     ```
 
-2. Defina as classes que implementam a interface Trecho (**Leaf**):
+2. Defina as classes que implementam a interface Trecho (**ComponentConcreto**):
 
     ```c#
-    namespace Leafs {
+    namespace ComponentesConcretos {
       public class TrechoAndando: Trecho {
         private string direcao;
         private double distancia;
@@ -70,10 +67,10 @@ Components.
     }
     ```
 
-3. Defina uma classe Caminho que é um Trecho e será composto por um ou mais trechos (**Composite**):
+3. Defina uma classe Caminho que é um Trecho e será composto por um ou mais trechos (**ComponenteComposto**):
 
     ```c#
-    namespace Composites {
+    namespace ComponenteComposto {
       public class Caminho: Trecho {
         private ArrayList trechos;
     

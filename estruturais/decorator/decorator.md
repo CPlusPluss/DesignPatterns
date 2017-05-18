@@ -1,7 +1,4 @@
 ## Decorator
-***
-#### Definição
-***
 
 Adiciona funcionalidade a um objeto dinamicamente.
 
@@ -9,15 +6,15 @@ Adiciona funcionalidade a um objeto dinamicamente.
 #### Diagrama de classe
 ***
 
-![decorator](https://cloud.githubusercontent.com/assets/14116020/26123876/ea4b5d24-3a52-11e7-9457-bc5d6547f5fa.png)
+![decorator](https://cloud.githubusercontent.com/assets/14116020/26187093/dd1ebab8-3b6c-11e7-8591-df374780d1d9.png)
 
-* **Component (Coquetel)**: Define a interface de objetos que possuem determinada tarefa.
+* **ComponenteAbstrato (Coquetel)**: Define a interface de objetos que possuem determinada tarefa.
 
-* **ConcreteComponent (Cachaca, Rum, Vodka)**: Implementação particular do Component.
+* **ComponenteConcreto (Cachaca, Rum, Vodka)**: Implementação particular do ComponenteAbstrato.
 
-* **Decorator (CoquetelDecorator)**: Classe abstrata que mantém uma referência para um Component e será utilizada para padronizar os objetos decoradores.
+* **DecoradorAbstrato (DecoradorCoquetel)**: Classe abstrata que mantém uma referência para um Componente e será utilizada para padronizar os objetos decoradores.
 
-* **ConcreteDecorator (Refrigerante, Suco, Acuca, Limao)**: Implementação de um Decorator.
+* **DecoradorConcreto (Refrigerante, Suco, Acuca, Limao)**: Implementação de um Decorador.
 
 ***
 #### Implementação
@@ -26,7 +23,7 @@ Adiciona funcionalidade a um objeto dinamicamente.
 1. Defina uma interface ou classe abstrata Coquetel (**Component**)
 
     ```c#
-    namespace Component {
+    namespace ComponenteAbstrato {
       public abstract class Coquetel {
         protected string nome;
         protected double preco;
@@ -42,10 +39,10 @@ Adiciona funcionalidade a um objeto dinamicamente.
     }
     ```
 
-2. Crie os tipos de coqueteis (**ConcreteComponent**)
+2. Crie os tipos de coqueteis (**ComponenteConcreto**)
 
     ```c#
-    namespace ConcreteComponent {
+    namespace ComponentesConcretos {
       public class Cachaca: Coquetel {
         public Cachaca() {
           nome = "Cachaça";
@@ -62,14 +59,14 @@ Adiciona funcionalidade a um objeto dinamicamente.
     }
     ```
 
-3. Crie a classe abstrata ou interface que será de base para os decorators (**Decorator**)
+3. Crie a classe abstrata ou interface que será de base para os decoradores (**Decorador**)
 
     ```c#
-    namespace Decorator {
-      public abstract class CoquetelDecorator: Coquetel {
+    namespace Decorador {
+      public abstract class DecoradorCoquetel: Coquetel {
         Coquetel coquetel;
     
-        public CoquetelDecorator(Coquetel coquetel) {
+        public DecoradorCoquetel(Coquetel coquetel) {
           this.coquetel = coquetel;
         }
     
@@ -84,25 +81,25 @@ Adiciona funcionalidade a um objeto dinamicamente.
     }
     ```
 
-4. Crie os decorators para o coquetel (**ConcreteDecorator**)
+4. Crie os decoradores para o coquetel (**DecoradorConcreto**)
 
     ```c#
-    namespace ConcreteDecorator {
-      public class Refrigerante: CoquetelDecorator {
+    namespace DecoradoresConcretos {
+      public class Refrigerante: DecoradorCoquetel {
         public Refrigerante(Coquetel coquetel): base(coquetel) {
           nome = "Refrigerante";
           preco = 1.0;
         }
       }
     
-      public class Acuca: CoquetelDecorator {
+      public class Acuca: DecoradorCoquetel {
         public Acuca(Coquetel coquetel): base(coquetel) {
           nome = "Açuca";
           preco = 0.5;
         }
       }
     
-      public class Dose: CoquetelDecorator {
+      public class Dose: DecoradorCoquetel {
         public Dose(Coquetel coquetel): base(coquetel) {
           nome = "Dose";
           preco = 2.5;
@@ -111,7 +108,7 @@ Adiciona funcionalidade a um objeto dinamicamente.
     }
     ```
 
-5. Teste os decorators
+5. Teste os decoradores
 
     ```c#
     class Testes {

@@ -1,7 +1,4 @@
 ## Adapter
-***
-#### Definição
-***
 
 Permite que um objeto seja substituido por outro que, apesar de realizar a mesma tarefa, possui uma interface diferente.
 
@@ -9,15 +6,15 @@ Permite que um objeto seja substituido por outro que, apesar de realizar a mesma
 #### Diagrama de classe
 ***
 
-![adapter](https://cloud.githubusercontent.com/assets/14116020/26122241/329a3d08-3a4d-11e7-8b8f-c6a8a6a17f51.png)
+![adapter](https://cloud.githubusercontent.com/assets/14116020/26186346/6add8b32-3b67-11e7-89a2-3305dc140d5b.png)
 
-* **Target (ControleDePonto)**: Define a interface utilizada pelo cliente
+* **SistemaAntigo (ControleDePonto)**: Define a interface utilizada pelo cliente
 
-* **Adapter (ControleDePontoAdapter)**: Classe que implementa a interface definida pelo Target e adapta as chamadas do Client para o Adaptee.
+* **Adaptador (ControleDePontoAdapter)**: Classe que implementa a interface definida pelo SistemaAntigo e adapta as chamadas do Client para o NovoSistema.
 
-* **Adaptee (ControleDePontoNovo)**: Classe que define o novo objeto a ser utilizado.
+* **NovoSistema (ControleDePontoNovo)**: Classe que define o novo objeto a ser utilizado.
 
-* **Cliente**: Interage com os objetos através da interface definida por Target.
+* **Cliente**: Interage com os objetos através da interface definida pelo SistemaAntigo.
 
 ***
 #### Implementação
@@ -39,10 +36,10 @@ Permite que um objeto seja substituido por outro que, apesar de realizar a mesma
     }
     ```
 
-2. Defina qual o ponto de controle antigo ou o (**Target**) a qual precisa ser adaptado para o novo
+2. Defina qual o ponto de controle antigo ou o (**SistemaAntigo**) a qual precisa ser adaptado para o novo
 
     ```c#
-    namespace Target {  
+    namespace SistemaAntigo {  
       public class ControleDePonto {
         public void registraEntrada(Funcionario funcionario) {
           StringBuilder stringBuilder = new StringBuilder();
@@ -67,10 +64,10 @@ Permite que um objeto seja substituido por outro que, apesar de realizar a mesma
     }
     ```
 
-3. Defina qual a novo ponto de controle ou (**Adaptee**) que será usado no lugar do velho definido anteriormente.
+3. Defina qual a novo ponto de controle ou (**NovoSistema**) que será usado no lugar do velho definido anteriormente.
 
     ```c#
-    namespace Adaptee {
+    namespace NovoSistema {
       public class ControleDePontoNovo {
         public void registra(Funcionario funcionario, bool entrada) {
           StringBuilder stringBuilder = new StringBuilder();
@@ -95,14 +92,14 @@ Permite que um objeto seja substituido por outro que, apesar de realizar a mesma
     }
     ```
 
-4. Agora só criar o adaptador (**Adapter**) que será utilizado para substituir o velho pelo novo sem mudar sua estrutura.
+4. Agora só criar o adaptador (**Adaptador**) que será utilizado para substituir o velho pelo novo sem mudar sua estrutura.
 
     ```c#
-    namespace Adapter {
-      public class ControleDePontoAdapter: ControleDePonto {
+    namespace Adaptador {
+      public class ControleDePontoAdaptador: ControleDePonto {
         private ControleDePontoNovo controleDePontoNovo;
     
-        public ControleDePontoAdapter() {
+        public ControleDePontoAdaptador() {
           this.controleDePontoNovo = new ControleDePontoNovo();
         }
     
@@ -122,7 +119,7 @@ Permite que um objeto seja substituido por outro que, apesar de realizar a mesma
     ```c#
     class Teste {
       public static void Main(string[] args) {
-        ControleDePonto controleDePonto = new ControleDePontoAdapter();
+        ControleDePonto controleDePonto = new ControleDePontoAdaptador();
         Funcionario funcionario = new Funcionario("Marcelo Adnet");
         controleDePonto.registraEntrada(funcionario);
         Thread.Sleep(3000);
