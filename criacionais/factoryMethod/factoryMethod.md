@@ -26,7 +26,7 @@ Pode possuir uma implementação padrão do método de criação do produto.
 1. Crie a interface que irá definir as fabricas concretas (**FabricaAbstrata**)
 
     ```c#
-    namespace Factory {
+    namespace FabricaAbstrata {
       public interface FabricaDeCarro {
         Carro criarCarro(int carro = 0);
       }
@@ -36,7 +36,7 @@ Pode possuir uma implementação padrão do método de criação do produto.
 2. Cria as fabricas concretas seguindo a interface definida (**FabricaConcreta**)
 
     ```c#
-    namespace ConcreteFactory {
+    namespace FabricasConcretas {
       public class FabricaFiat: FabricaDeCarro {
         public const int PALIO = 0;
         public const int UNO = 1;
@@ -75,7 +75,7 @@ Pode possuir uma implementação padrão do método de criação do produto.
 3. Crie a interface que irá definir os produtos (**ProdutoAbstrato**)
 
     ```c#
-    namespace Product {
+    namespace ProdutoAbstrato {
       public interface Carro {
         void exibirInformacao();
       }
@@ -85,7 +85,7 @@ Pode possuir uma implementação padrão do método de criação do produto.
 4. Crie os produtos concretos de acordo com sua interface (**ProdutoConcreto**)
 
     ```c#
-    namespace ConcreteProduct {
+    namespace ProdutosConcretos {
       public class Palio: Carro {
         public void exibirInformacao() {
           Console.WriteLine("Modelo: Palio");

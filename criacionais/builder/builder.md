@@ -9,15 +9,15 @@ criados com implementações distintas de cada passo.
 
 ![builder](https://cloud.githubusercontent.com/assets/14116020/26184556/20f84e22-3b5c-11e7-946a-5211bfaeef48.png)
 
-* **ProdutoAbstrato (CarroModel)**: Interface que define os objetos que devem ser construídos pelos Construtores.
+* **ProdutoAbstrato (Carro)**: Interface que define os objetos que devem ser construídos pelos Construtores.
 
 * **ProdutoConcreto (...)**: Implementação da interface que define os objetos que devem ser contruídos pelos Construtores.
 
-* **ConstrutorAbstrato (CarroBuilder)**: Interface que define os passos para a criação de um produto.
+* **ConstrutorAbstrato (FabricaDeCarro)**: Interface que define os passos para a criação de um produto.
 
-* **ConstrutorConcreto (FiatBuilder, VolksBuilder)**: Constrói um produto específico implementando a interface ConstrutoAbstrato.
+* **ConstrutorConcreto (FabricaFiat, FabricaVolks)**: Constrói um produto específico implementando a interface ConstrutoAbstrato.
 
-* **Diretor (ConcessionariaDirector)**: Aciona os método do construtorAbstrato para construir um produto, constroi passo a passo em apenas um método.
+* **Diretor (Concessionaria)**: Aciona os método do construtorAbstrato para construir um produto, constroi passo a passo em apenas um método.
 
 * **Cliente**: Utiliza do Diretor para construir o produto.
 
@@ -28,8 +28,8 @@ criados com implementações distintas de cada passo.
 1. Crie o produto (**ProdutoAbstrato**) e suas implementações se tiver.
 
     ```c#
-    namespace Product {
-      public class CarroModel {
+    namespace Produtos {
+      public class Carro {
         private double preco;
         private string motor;
         private int anoDeFabricacao;
@@ -82,21 +82,21 @@ criados com implementações distintas de cada passo.
 2. Cria a interface que irá definir os passos para criar o produto (**ConstrutorAbstrato**)
 
     ```c#
-    namespace Builder {
-      public abstract class CarroBuilder {
-        protected CarroModel carro;
+    namespace ConstrutorAbstrato {
+      public abstract class FabricaDeCarro {
+        protected Carro carro;
     
-        public CarroBuilder() {
-          carro = new CarroModel();
+        public FabricaDeCarro() {
+          carro = new Carro();
         }
     
-        public abstract void buildPreco();
-        public abstract void buildMotor();
-        public abstract void buildAnoDeFabricacao();
-        public abstract void buildModelo();
-        public abstract void buildMontadora();
+        public abstract void criaPreco();
+        public abstract void criaMotor();
+        public abstract void criaAnoDeFabricacao();
+        public abstract void criaModelo();
+        public abstract void criaMontadora();
     
-        public CarroModel getCarro() {
+        public Carro getCarro() {
           return carro;
         }
       }
@@ -106,47 +106,47 @@ criados com implementações distintas de cada passo.
 3. Crie as fabricas que irão construir o produto utilizando como base a interface ConstrutorAbstrato (**ConstrutorConcreto**)
 
     ```c#
-    namespace ConcreteBuilder {
-      public class FiatBuilder: CarroBuilder {
-        public override void buildPreco() {
+    namespace ConstrutoresConcretos {
+      public class FabricaFiat: FabricaDeCarro {
+        public override void criaPreco() {
           carro.setPreco(25000.00);
         }
     
-        public override void buildMotor() {
+        public override void criaMotor() {
           carro.setMotor("Fire Flex 1.0");
         }
     
-        public override void buildAnoDeFabricacao() {
+        public override void criaAnoDeFabricacao() {
           carro.setAnoDeFabricacao(2011);
         }
     
-        public override void buildModelo() {
+        public override void criaModelo() {
           carro.setModelo("Palio");
         }
     
-        public override void buildMontadora() {
+        public override void criaMontadora() {
           carro.setMontadora("Fiat");
         }
       }
     
-      public class VolksBuilder: CarroBuilder {
-        public override void buildPreco() {
+      public class FabricaVolks: FabricaDeCarro {
+        public override void criaPreco() {
           carro.setPreco(45000.00);
         }
     
-        public override void buildMotor() {
+        public override void criaMotor() {
           carro.setMotor("Fire Flex 2.0");
         }
     
-        public override void buildAnoDeFabricacao() {
+        public override void criaAnoDeFabricacao() {
           carro.setAnoDeFabricacao(2008);
         }
     
-        public override void buildModelo() {
+        public override void criaModelo() {
           carro.setModelo("CrossFox");
         }
     
-        public override void buildMontadora() {
+        public override void criaMontadora() {
           carro.setMontadora("Volkswagen");
         }
       }
@@ -156,23 +156,23 @@ criados com implementações distintas de cada passo.
 4. Agora crie a classe que irá construir o objeto passo a passo utilizando as fabricas como base (**Diretor**)
 
     ```c#
-    namespace Director {
-      public class ConcessionariaDirector {
-        protected CarroBuilder montadora;
+    namespace Diretor {
+      public class Concessionaria {
+        protected FabricaDeCarro montadora;
       
-        public ConcessionariaDirector(CarroBuilder montadora) {
+        public Concessionaria(FabricaDeCarro montadora) {
           this.montadora = montadora;
         }
       
         public void construirCarro() {
-          montadora.buildPreco();
-          montadora.buildAnoDeFabricacao();
-          montadora.buildMotor();
-          montadora.buildModelo();
-          montadora.buildMontadora();
+          montadora.criaPreco();
+          montadora.criaAnoDeFabricacao();
+          montadora.criaMotor();
+          montadora.criaModelo();
+          montadora.criaMontadora();
         }
       
-        public CarroModel getCarro() {
+        public Carro getCarro() {
           return montadora.getCarro();
         }
       }
@@ -184,15 +184,15 @@ criados com implementações distintas de cada passo.
     ```c#
     class Teste {
       public static void Main(string[] args) {
-        ConcessionariaDirector concessionaria = new ConcessionariaDirector(new FiatBuilder());
+        Concessionaria concessionaria = new Concessionaria(new FabricaFiat());
         concessionaria.construirCarro();
-        CarroModel carro = concessionaria.getCarro();
+        Carro carro = concessionaria.getCarro();
         Console.WriteLine("Carro: " + carro.getModelo() + "/" + carro.getMontadora());
         Console.WriteLine("Ano: " + carro.getAnoDeFabricacao());
         Console.WriteLine("Motor: " + carro.getMotor());
         Console.WriteLine("Valor: " + carro.getPreco());
     
-        concessionaria = new ConcessionariaDirector(new VolksBuilder());
+        concessionaria = new Concessionaria(new FabricaVolks());
         concessionaria.construirCarro();
         carro = concessionaria.getCarro();
         Console.WriteLine("Carro: " + carro.getModelo() + "/" + carro.getMontadora());

@@ -19,13 +19,13 @@ Possibilitar a criação de novos objetos a partir da cópia de objetos existent
 1. Primeiro crie a interface de todos os prototipos (**PrototipoAbstrato**)
 
     ```c#
-    namespace Prototype {
-      public abstract class CarroPrototype {
+    namespace PrototipoAbstrato {
+      public abstract class PrototipoDeCarro {
         protected double valorCompra;
       
         public abstract string exibirInfo();
       
-        public abstract CarroPrototype clonar();
+        public abstract PrototipoDeCarro clonar();
       
         public double getValorCompra() {
           return valorCompra;
@@ -41,13 +41,13 @@ Possibilitar a criação de novos objetos a partir da cópia de objetos existent
 2. Crie a implementação dos prototipos (**PrototipoConcreto**)
 
     ```c#
-    namespace ConcretePrototype {
-      public class FiestaPrototype: CarroPrototype {
-        protected FiestaPrototype(FiestaPrototype fiesta) {
+    namespace PrototiposConcretos {
+      public class Fiesta: PrototipoDeCarro {
+        protected Fiesta(Fiesta fiesta) {
           this.valorCompra = fiesta.getValorCompra();
         }
     
-        public FiestaPrototype() {
+        public Fiesta() {
           valorCompra = 0.0;
         }
     
@@ -55,8 +55,8 @@ Possibilitar a criação de novos objetos a partir da cópia de objetos existent
           return "Modelo: Fiesta\nMontadora: Ford\nValor: R$ " + getValorCompra();
         }
     
-        public override CarroPrototype clonar() {
-          return new FiestaPrototype(this);
+        public override PrototipoDeCarro clonar() {
+          return new Fiesta(this);
         }
       }
     }
@@ -67,12 +67,12 @@ Possibilitar a criação de novos objetos a partir da cópia de objetos existent
     ```c#
     class Testes {
       public static void Main(string[] args) {
-        FiestaPrototype fiesta = new FiestaPrototype();
+        Fiesta fiesta = new Fiesta();
     
-        CarroPrototype fiestaNovo = fiesta.clonar();
+        PrototipoDeCarro fiestaNovo = fiesta.clonar();
         fiestaNovo.setValorCompra(26900.0);
     
-        CarroPrototype fiestaUsado = fiesta.clonar();
+        PrototipoDeCarro fiestaUsado = fiesta.clonar();
         fiestaUsado.setValorCompra(16000.0);
     
         Console.WriteLine(fiestaNovo.exibirInfo());

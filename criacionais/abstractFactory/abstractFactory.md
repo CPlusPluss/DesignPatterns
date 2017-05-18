@@ -27,7 +27,7 @@ Encapsula a escolha da ckasse cibcreta a ser utilizada na criação de objetos d
 1. Defina as interfaces que irão definir as familias de produtos (**ProdutoAbstrato**)
 
     ```c#
-    namespace AbstractProduct {
+    namespace ProdutosAbstratos {
       public interface CarroPopular {
         void exibirInformacao();
       }
@@ -41,7 +41,7 @@ Encapsula a escolha da ckasse cibcreta a ser utilizada na criação de objetos d
 2. Define os produtos de cada tipo/família (**ProdutoConcreto**)
 
     ```c#
-    namespace ConcreteProduct {
+    namespace ProdutosConcretos {
       public class Palio: CarroPopular {
         public void exibirInformacao() {
           Console.WriteLine("Modelo: Palio");
@@ -79,7 +79,7 @@ Encapsula a escolha da ckasse cibcreta a ser utilizada na criação de objetos d
 3. Defina a fabrica que ira definir as fabricas concretas (**FabricaAbstrata**) passando os tipos de produtos que ela irá fabricar
 
     ```c#
-    namespace AbstractFactory {
+    namespace FabricaAbstrata {
       public interface FabricaDeCarro {
         CarroSedan criarCarroSedan();
         CarroPopular criarCarroPopular();
@@ -90,7 +90,7 @@ Encapsula a escolha da ckasse cibcreta a ser utilizada na criação de objetos d
 4. Defina as fabricas concretas que irão criar os carros (**FabricaConcreta**)
 
     ```c#
-    namespace ConcreteFactory {
+    namespace FabricasConcretas {
       public class FabricaFiat: FabricaDeCarro {
         public CarroSedan criarCarroSedan() {
           return new Siena();

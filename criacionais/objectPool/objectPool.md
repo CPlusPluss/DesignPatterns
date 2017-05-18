@@ -12,9 +12,9 @@ Uma situação típica em que recursos limitados devem ser reutilizados é o do 
 
 * **Produto (Mesa)**: Define os objetos gerenciados pelos CompartilhamentosConcretos.
 
-* **CompartilhamentoAbstrato (Pool)**: Interface dos objetos que controlam a aquisição e a liberação dos Produtos.
+* **CompartilhamentoAbstrato (Compartilhamento)**: Interface dos objetos que controlam a aquisição e a liberação dos Produtos.
 
-* **CompartilhamentoConcreto (MesaPool)**: Implementação particular de um CompartilhamentoAbstrato que gerencia um Produto específico.
+* **CompartilhamentoConcreto (MesaCompartilhada)**: Implementação particular de um CompartilhamentoAbstrato que gerencia um Produto específico.
 
 ***
 #### Implementação
@@ -23,7 +23,7 @@ Uma situação típica em que recursos limitados devem ser reutilizados é o do 
 1. Defina a classe de mesas que terá suas informações:
 
     ```c#
-    namespace Product {
+    namespace Produtos {
       public class Mesa {
         private int numero;
       
@@ -41,23 +41,23 @@ Uma situação típica em que recursos limitados devem ser reutilizados é o do 
 2. Defina a inteface que irá controlar as mesas (**CompartilhamentoAbstrato**)
 
     ```c#
-    namespace Pool {
-      public interface Pool<Type> {
+    namespace CompartilhamentoAbstrato {
+      public interface Compartilhamento<Type> {
         Type adquire(int numero);
         void libera(int numero);
       }
     }
     ```
 
-3. Defina a classe de mesasPool (**CompartilhamentoConcreto**) que irá controlar a entrega ou liberação das mesas definidas em sua interface (**CompartilhamentoAbstrato**)
+3. Defina a classe de mesaCompartilhadas (**CompartilhamentoConcreto**) que irá controlar a entrega ou liberação das mesas definidas em sua interface (**CompartilhamentoAbstrato**)
 
     ```c#
-    namespace ConcretePool {
-      public class MesaPool: Pool<Mesa> {
+    namespace CompartilhamentosConcretos {
+      public class MesaCompartilhada: Compartilhamento<Mesa> {
         private List<Mesa> mesasDisponiveis;
         private List<Mesa> mesasOcupadas;
     
-        public MesaPool() {
+        public MesaCompartilhada() {
           this.mesasDisponiveis = new List<Mesa>();
           this.mesasOcupadas = new List<Mesa>();
           this.mesasDisponiveis.Add(new Mesa(1));
@@ -105,11 +105,11 @@ Uma situação típica em que recursos limitados devem ser reutilizados é o do 
     ```c#
     class Testes {
       public static void Main(string[] args) {
-        Pool<Mesa> mesaPool = new MesaPool();
-        Mesa mesa = mesaPool.adquire(7);
-        mesa = mesaPool.adquire(3);
-        mesaPool.libera(7);
-        mesaPool.libera(7);
+        Compartilhamento<Mesa> mesaCompartilhada = new MesaCompartilhada();
+        Mesa mesa = mesaCompartilhada.adquire(7);
+        mesa = mesaComartilhada.adquire(3);
+        mesaCompartilhada.libera(7);
+        mesaCompartilhada.libera(7);
       }
     }
     ```
