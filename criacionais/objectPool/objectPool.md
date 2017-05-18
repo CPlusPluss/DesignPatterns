@@ -1,7 +1,4 @@
 ## Object Pool
-***
-#### Definição
-***
 
 Possibilita o reaproveitamento de objetos
 
@@ -11,13 +8,13 @@ Uma situação típica em que recursos limitados devem ser reutilizados é o do 
 #### Diagrama de classe
 ***
 
-![objectpool](https://cloud.githubusercontent.com/assets/14116020/26133479/bbd05348-3a7d-11e7-85a5-45a9b5b4c1cf.png)
+![objectpool](https://cloud.githubusercontent.com/assets/14116020/26185127/626ca292-3b5f-11e7-9e97-7a2797cb89e9.png)
 
-* **Product (Mesa)**: Define os objetos gerenciados pelos Pools.
+* **Produto (Mesa)**: Define os objetos gerenciados pelos Pools.
 
-* **Pool (Pool)**: Interface dos objetos que controlam a aquisição e a liberação dos Products.
+* **CompartilhamentoAbstrato (Pool)**: Interface dos objetos que controlam a aquisição e a liberação dos Products.
 
-* **concretePool (MesaPool)**: Implementação particular de um Pool que gerencia um Product específico.
+* **CompartilhamentoConcreto (MesaPool)**: Implementação particular de um Pool que gerencia um Product específico.
 
 ***
 #### Implementação
@@ -41,7 +38,7 @@ Uma situação típica em que recursos limitados devem ser reutilizados é o do 
     }
     ```
 
-2. Defina a inteface que irá controlar as mesas (**Pool**)
+2. Defina a inteface que irá controlar as mesas (**CompartilhamentoAbstrato**)
 
     ```c#
     namespace Pool {
@@ -52,7 +49,7 @@ Uma situação típica em que recursos limitados devem ser reutilizados é o do 
     }
     ```
 
-3. Defina a classe de mesasPool (**ConcretePool**) que irá controlar a entrega ou liberação das mesas definidas em sua intercade (**Pool**)
+3. Defina a classe de mesasPool (**CompartilhamentoConcreto**) que irá controlar a entrega ou liberação das mesas definidas em sua interface (**CompartilhamentoAbstrato**)
 
     ```c#
     namespace ConcretePool {

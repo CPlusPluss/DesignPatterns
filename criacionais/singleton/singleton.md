@@ -1,7 +1,4 @@
 ## Singleton
-***
-#### Definição
-***
 
 Permitir a criação de uma única instância de uma classe e fornecer um modo para recuperá-la.
 
@@ -9,7 +6,7 @@ Permitir a criação de uma única instância de uma classe e fornecer um modo p
 #### Diagrama de classe
 ***
 
-![singleton](https://cloud.githubusercontent.com/assets/14116020/26128579/3f2604e2-3a63-11e7-8e9b-d132ba79adfa.png)
+![singleton](https://cloud.githubusercontent.com/assets/14116020/26185411/3646040e-3b61-11e7-8408-da491b5c16f8.png)
 
 * **singleton ()**: Classe que permite a criação de uma única instância e fornece um método estático para recuperá-la.
 

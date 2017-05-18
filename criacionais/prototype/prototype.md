@@ -1,7 +1,4 @@
 ## Prototype
-***
-#### Definição
-***
 
 Possibilitar a criação de novos objetos a partir da cópia de objetos existentes.
 
@@ -9,17 +6,17 @@ Possibilitar a criação de novos objetos a partir da cópia de objetos existent
 #### Diagrama de classe
 ***
 
-![prototype](https://cloud.githubusercontent.com/assets/14116020/26128202/fc5aefc0-3a61-11e7-8a5d-219907317e48.png)
+![prototype](https://cloud.githubusercontent.com/assets/14116020/26185361/df214346-3b60-11e7-822b-dc6c89584d9c.png)
 
-* **Prototype (CarroPrototype)**: Abstração dos objetos que possuem a capacidade de se auto copiar.
+* **PrototipoAbstrato (CarroPrototype)**: Abstração dos objetos que possuem a capacidade de se auto copiar.
 
-* **ConcretePrototype (FiestaPrototype, GolPrototype, ...)**: Classe que define um tipo particular de objeto que pode ser clonado.
+* **PrototipoConcreto (FiestaPrototype, GolPrototype, ...)**: Classe que define um tipo particular de objeto que pode ser clonado.
 
 ***
 #### Implementação
 ***
 
-1. Primeiro crie a interface de todos os prototipos (**Prototype**)
+1. Primeiro crie a interface de todos os prototipos (**PrototipoAbstrato**)
 
     ```c#
     namespace Prototype {
@@ -41,7 +38,7 @@ Possibilitar a criação de novos objetos a partir da cópia de objetos existent
     }
     ```
 
-2. Crie a implementação dos prototipos (**ConcretePrototype**)
+2. Crie a implementação dos prototipos (**PrototipoConcreto**)
 
     ```c#
     namespace ConcretePrototype {
