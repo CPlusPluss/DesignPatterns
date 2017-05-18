@@ -1,5 +1,4 @@
 ## Factory Method
-***
 #### Definição
 ***
 
@@ -11,22 +10,22 @@ A fábrica (interface) cria objetos que só serão definidos em tempo de execuç
 #### Diagrama de classe
 ***
 
-![factorymethod](https://cloud.githubusercontent.com/assets/14116020/26144084/dac4dc20-3abd-11e7-99fb-6ba9c1dca1c8.png)
+![factorymethod](https://cloud.githubusercontent.com/assets/14116020/26183872/042e2f72-3b58-11e7-90eb-61491a2e1005.png)
 
-* **Factory (FabricaDeCarro)**: Classe ou interface que define a assinatura do método responsável pela criação do produto.
+* **Fabrica (FabricaDeCarro)**: Classe ou interface que define a assinatura do método responsável pela criação do produto.
 Pode possuir uma implementação padrão do método de criação do produto.
 
-* **ConcreteFactory (FabricaFiat, FabricaFord, ...)**: Classe que implementa ou sobrescreve o método de criação do produto.
+* **FabricaConcreta (FabricaFiat, FabricaFord, ...)**: Classe que implementa ou sobrescreve o método de criação do produto.
 
-* **Product (Carro)**: Classe ou interface que define o objeto a ser criado.
+* **Produto (Carro)**: Classe ou interface que define o objeto a ser criado.
 
-* **ConcreteProduct (Uno, Fiesta, Gol, Palio, ...)**: Uma implementação particular do tipo de objeto a ser criado.
+* **ProdutoConcreto (Uno, Fiesta, Gol, Palio, ...)**: Uma implementação particular do tipo de objeto a ser criado.
 
 ***
 #### Implementação
 ***
 
-1. Crie a interface que irá definir as fabricas concretas (**Factory**)
+1. Crie a interface que irá definir as fabricas concretas (**Fabrica**)
 
     ```c#
     namespace Factory {
@@ -36,7 +35,7 @@ Pode possuir uma implementação padrão do método de criação do produto.
     }
     ```
 
-2. Cria as fabricas concretas seguindo a interface definida (**ConcreteFactory**)
+2. Cria as fabricas concretas seguindo a interface definida (**FabricaConcreta**)
 
     ```c#
     namespace ConcreteFactory {
@@ -75,7 +74,7 @@ Pode possuir uma implementação padrão do método de criação do produto.
     }
     ```
 
-3. Crie a interface que irá definir os produtos (**Product**)
+3. Crie a interface que irá definir os produtos (**Produto**)
 
     ```c#
     namespace Product {
@@ -85,7 +84,7 @@ Pode possuir uma implementação padrão do método de criação do produto.
     }
     ```
 
-4. Crie os produtos concretos de acordo com sua interface (**ConcreteProduct**)
+4. Crie os produtos concretos de acordo com sua interface (**ProdutoConcreto**)
 
     ```c#
     namespace ConcreteProduct {
