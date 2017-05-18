@@ -1,5 +1,4 @@
 ## Builder
-***
 #### Definição
 ***
 
@@ -10,17 +9,17 @@ criados com implementações distintas de cada passo.
 #### Diagrama de classe
 ***
 
-![builder](https://cloud.githubusercontent.com/assets/14116020/26144020/a177e14c-3abd-11e7-8faa-527b7544d34e.png)
+![builder](https://cloud.githubusercontent.com/assets/14116020/26184556/20f84e22-3b5c-11e7-946a-5211bfaeef48.png)
 
-* **Product (CarroModel)**: Interface que define os objetos que devem ser construídos pelos Builders.
+* **ProdutoAbstrato (CarroModel)**: Interface que define os objetos que devem ser construídos pelos Builders.
 
-* **ConcreteProduct (...)**: Implementação da interface que define os objetos que devem ser contruídos pelos builders.
+* **ProdutoConcreto (...)**: Implementação da interface que define os objetos que devem ser contruídos pelos builders.
 
-* **Builder (CarroBuilder)**: Interface que define os passos para a criação de um produto.
+* **ConstrutorAbstrato (CarroBuilder)**: Interface que define os passos para a criação de um produto.
 
-* **ConcreteBuilder (FiatBuilder, VolksBuilder)**: Constrói um produto específico implementando a interface Builder.
+* **ConstrutorConcreto (FiatBuilder, VolksBuilder)**: Constrói um produto específico implementando a interface Builder.
 
-* **Director (ConcessionariaDirector)**: Aciona os método de um Builder para construir um produto, constroi passo a passo em apenas um método.
+* **Diretor (ConcessionariaDirector)**: Aciona os método de um Builder para construir um produto, constroi passo a passo em apenas um método.
 
 * **Cliente**: Utiliza do Director para construir o produto.
 
@@ -28,7 +27,7 @@ criados com implementações distintas de cada passo.
 #### Implementação
 ***
 
-1. Crie o produto (**Product**) e suas implementações se tiver.
+1. Crie o produto (**ProdutoAbstrato**) e suas implementações se tiver.
 
     ```c#
     namespace Product {
@@ -82,7 +81,7 @@ criados com implementações distintas de cada passo.
     }
     ```
 
-2. Cria a interface que irá definir os passos para criar o produto (**Builder**)
+2. Cria a interface que irá definir os passos para criar o produto (**ConstrutorAbstrato**)
 
     ```c#
     namespace Builder {
@@ -106,7 +105,7 @@ criados com implementações distintas de cada passo.
     }
     ```
 
-3. Crie as fabricas que irão construir o produto utilizando como base a interface Builder (**ConcreteBuilder**)
+3. Crie as fabricas que irão construir o produto utilizando como base a interface Builder (**ConstrutorConcreto**)
 
     ```c#
     namespace ConcreteBuilder {
@@ -156,7 +155,7 @@ criados com implementações distintas de cada passo.
     }
     ```
 
-4. Agora crie a classe que irá construir o objeto passo a passo utilizando as fabricas como base (**Director**)
+4. Agora crie a classe que irá construir o objeto passo a passo utilizando as fabricas como base (**Diretor**)
 
     ```c#
     namespace Director {
