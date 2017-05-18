@@ -1,5 +1,4 @@
 ## Abstract Factory
-***
 #### Definição
 ***
 
@@ -11,15 +10,15 @@ Encapsula a escolha da ckasse cibcreta a ser utilizada na criação de objetos d
 #### Diagrama de classe
 ***
 
-![abstractfactory](https://cloud.githubusercontent.com/assets/14116020/26143928/5cff01a8-3abd-11e7-9ab7-d1286d2c7344.png)
+![abstractfactory](https://cloud.githubusercontent.com/assets/14116020/26184271/3f08e3ec-3b5a-11e7-9113-02fff283e053.png)
 
-* **AbstractFactory (FabricaDeCarro)**: Interface que define as assinaturas dos métodos responsáveis pela criação dos objetos uma família.
+* **FabricaAbstrata (FabricaDeCarro)**: Interface que define as assinaturas dos métodos responsáveis pela criação dos objetos uma família.
 
-* **ConcreteFactory (FabricaFiat, FabricaFord, ...)**: Classe que implementa os métodos de criação dos objetos de uma família.
+* **FabricaConcreta (FabricaFiat, FabricaFord, ...)**: Classe que implementa os métodos de criação dos objetos de uma família.
 
-* **AbstractProduct (CarroSedan, CarroPopular)**: Interface que define um tipo de produto ou família de produtos.
+* **ProdutoAbstrato (CarroSedan, CarroPopular)**: Interface que define um tipo de produto ou família de produtos.
 
-* **ConcreteProduct (Siena, FiestaSedan, Palio, Fiesta)**: Implementação particular dessas informações um tipo/família de produto.
+* **ProdutoConcreto (Siena, FiestaSedan, Palio, Fiesta)**: Implementação particular dessas informações um tipo/família de produto.
 
 * **Cliente**: Usa apenas as interfaces AbstractFactory e AbstractProduct.
 
@@ -27,7 +26,7 @@ Encapsula a escolha da ckasse cibcreta a ser utilizada na criação de objetos d
 #### Implementação
 ***
 
-1. Defina as interfaces que irão definir as familias de produtos (**AbstractProduct**)
+1. Defina as interfaces que irão definir as familias de produtos (**ProdutoAbstrato**)
 
     ```c#
     namespace AbstractProduct {
@@ -41,7 +40,7 @@ Encapsula a escolha da ckasse cibcreta a ser utilizada na criação de objetos d
     }
     ```
 
-2. Define os produtos de cada tipo/família (**ConcreteProduct**)
+2. Define os produtos de cada tipo/família (**ProdutoConcreto**)
 
     ```c#
     namespace ConcreteProduct {
@@ -79,7 +78,7 @@ Encapsula a escolha da ckasse cibcreta a ser utilizada na criação de objetos d
     }
     ```
 
-3. Defina a fabrica que ira definir as fabricas concretas (**AbstractFactory**) passando os tipos de produtos que ela irá fabricar
+3. Defina a fabrica que ira definir as fabricas concretas (**FabricaAbstrata**) passando os tipos de produtos que ela irá fabricar
 
     ```c#
     namespace AbstractFactory {
@@ -90,7 +89,7 @@ Encapsula a escolha da ckasse cibcreta a ser utilizada na criação de objetos d
     }
     ```
 
-4. Defina as fabricas concretas que irão criar os carros (**ConcreteFactory**)
+4. Defina as fabricas concretas que irão criar os carros (**FabricaConcreta**)
 
     ```c#
     namespace ConcreteFactory {
