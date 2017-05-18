@@ -6,7 +6,7 @@ Permitir a criação de uma quantidade limitada de instâncias de determinada cl
 #### Diagrama de classe
 ***
 
-![multiton](https://cloud.githubusercontent.com/assets/14116020/26184763/1a9954bc-3b5d-11e7-8b11-09063e92802e.png)
+![multiton](https://cloud.githubusercontent.com/assets/14116020/26185622/819ae662-3b62-11e7-94e3-3289b37ae885.png)
 
 * **Multiton**: Classe que permite a criação de uma quantidade limitada de instâncias e fornece um método estático para recuperá-las.
 
