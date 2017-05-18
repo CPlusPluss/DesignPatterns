@@ -8,14 +8,14 @@ A fábrica (interface) cria objetos que só serão definidos em tempo de execuç
 #### Diagrama de classe
 ***
 
-![factorymethod](https://cloud.githubusercontent.com/assets/14116020/26183872/042e2f72-3b58-11e7-90eb-61491a2e1005.png)
+![factorymethod](https://cloud.githubusercontent.com/assets/14116020/26185539/01d47376-3b62-11e7-9c5e-2885e9a3362b.png)
 
-* **Fabrica (FabricaDeCarro)**: Classe ou interface que define a assinatura do método responsável pela criação do produto.
+* **FabricaAbstrata (FabricaDeCarro)**: Classe ou interface que define a assinatura do método responsável pela criação do produto.
 Pode possuir uma implementação padrão do método de criação do produto.
 
 * **FabricaConcreta (FabricaFiat, FabricaFord, ...)**: Classe que implementa ou sobrescreve o método de criação do produto.
 
-* **Produto (Carro)**: Classe ou interface que define o objeto a ser criado.
+* **ProdutoAbstrato (Carro)**: Classe ou interface que define o objeto a ser criado.
 
 * **ProdutoConcreto (Uno, Fiesta, Gol, Palio, ...)**: Uma implementação particular do tipo de objeto a ser criado.
 
@@ -23,7 +23,7 @@ Pode possuir uma implementação padrão do método de criação do produto.
 #### Implementação
 ***
 
-1. Crie a interface que irá definir as fabricas concretas (**Fabrica**)
+1. Crie a interface que irá definir as fabricas concretas (**FabricaAbstrata**)
 
     ```c#
     namespace Factory {
@@ -72,7 +72,7 @@ Pode possuir uma implementação padrão do método de criação do produto.
     }
     ```
 
-3. Crie a interface que irá definir os produtos (**Produto**)
+3. Crie a interface que irá definir os produtos (**ProdutoAbstrato**)
 
     ```c#
     namespace Product {
