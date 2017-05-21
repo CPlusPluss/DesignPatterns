@@ -1,7 +1,4 @@
 ## Visitor
-***
-#### Definição
-***
 
 Quando temos uma árvore, e precisamos navegar nessa árvore de maneira organizada, podemos usar um Visitor
 
@@ -14,28 +11,28 @@ classes dos elementos sobre os quais opera.
 #### Diagrama de classe
 ***
 
-![visitor](https://cloud.githubusercontent.com/assets/14116020/26139734/181a43cc-3aa9-11e7-978c-e8b5a8f3c923.png)
+![visitor](https://cloud.githubusercontent.com/assets/14116020/26286200/b9bf9198-3e35-11e7-89b2-824fa3be45dd.png)
 
-* **Visitor (AtualizadorDeFuncionario)**: Define a interface dos objetos responsáveis pelas atualizações dos Elements.
+* **Visitante (AtualizadorDeFuncionario)**: Define a interface dos objetos responsáveis pelas atualizações dos Elementos.
 
-* **ConcreteVisitor (AtualizadorSalarial)**: Implementa a lógica de uma determinada atualização dos Elements.
+* **VisitanteConcreto (AtualizadorSalarial)**: Implementa a lógica de uma determinada atualização dos Elementos.
 
-* **Element (Atualizavel)**: Define a interface dos objetos que podem ser atualizados por um Visitor.
+* **Elemento (Atualizavel)**: Define a interface dos objetos que podem ser atualizados por um Visitante.
 
-* **ConcreteElement (Funcionario, Departamento)**: Define um tipo específico de Element.
+* **ElementoConcreto (Funcionario, Departamento)**: Define um tipo específico de Elemento.
 
-* **ObjectStructure**: Agregador dos Elements.
+* **EstruturaDoObjeto**: Agregador dos Elementos.
 
-* **Client**: Aplica um determinado Visitor nos Elements do ObjectStructure.
+* **Cliente**: Aplica um determinado Visitante nos Elementos da estrutura.
 
 ***
 #### Implementação
 ***
 
-1. Defina a interface AtualizadorDeFuncionario (**Visitor**)
+1. Defina a interface AtualizadorDeFuncionario (**Visitante**)
 
     ```c#
-    namespace Visitor {
+    namespace Visitante {
       public interface AtualizadorDeFuncionario {
         void atualiza(Gerente gerente);
         void atualiza(Telefonista telefonista);
@@ -43,10 +40,10 @@ classes dos elementos sobre os quais opera.
     }
     ```
 
-2. Defina a implementação AtualizadorSalarial (**ConcreteVisitor**)
+2. Defina a implementação AtualizadorSalarial (**VisitanteConcreto**)
 
     ```c#
-    namespace ConcreteVisitor {
+    namespace VisitantesConcretos {
       public class AtualizadorSalarial: AtualizadorDeFuncionario {
         public void atualiza(Gerente gerente) {
           gerente.setSalario(gerente.getSalario() * 1.43);
@@ -59,20 +56,20 @@ classes dos elementos sobre os quais opera.
     }
     ```
 
-3. Crie a interface Atualizavel (**Element**).
+3. Crie a interface Atualizavel (**Elemento**).
 
     ```c#
-    namespace Element {
+    namespace Elemento {
       public interface Atualizavel {
         void aceita(AtualizadorDeFuncionario atualizador);
       }
     }
     ```
 
-4. Defina as classes Funcionario, Gerente, Telefonista e Departamento (**ConcreteElements**).
+4. Defina as classes Funcionario, Gerente, Telefonista e Departamento (**ElementosConcretos**).
 
     ```c#
-    namespace ConcreteElement {
+    namespace ElementosConcretos {
       public abstract class Funcionario: Atualizavel {
         private string nome;
         private double salario;

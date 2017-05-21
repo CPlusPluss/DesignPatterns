@@ -1,7 +1,4 @@
 ## Observer
-***
-#### Definição
-***
 
 Atribui aos objetos que tem seus estados alterados a tarefa de notificar os objetos interessados nessas mudanças, por exemplo, Na bolsa de valores as ações estão em constante mudança e as corretoras e bancos sempre querem ficar observando as alterações nessas ações.
 
@@ -9,33 +6,33 @@ Atribui aos objetos que tem seus estados alterados a tarefa de notificar os obje
 #### Diagrama de classe
 ***
 
-![observer](https://cloud.githubusercontent.com/assets/14116020/26085324/d588f7b4-39b9-11e7-9372-84ae045ef90a.png)
+![observer](https://cloud.githubusercontent.com/assets/14116020/26278411/77b38388-3d70-11e7-8ba6-ab72db83eee4.png)
 
-* **Subject (AcaoSubject)**: Interface usada para padronizar os objetos que serão observados.
+* **ObjetoObservadoAbstrato (AcaoAbstrata)**: Interface usada para padronizar os objetos que serão observados.
 
-* **ConcreteSubject (Acao)**: Implementação de um Subject.
+* **ObjetoObservado (Acao)**: Implementação de um objeto de interesse.
 
-* **Observer (AcaoObserver)**: Interface dos objetos interessados no estado dos Subjects.
+* **Observador (Observador)**: Interface dos observadores interessados no estado dos objetos.
 
-* **ConcreteObserver(Corretora, Bancos)**: Implementação particular de um Observer.
+* **ObservadorConcreto (Corretora, Bancos)**: Implementação particular de um Observador.
 
 ***
 #### Implementação
 ***
 
-1. Crie uma interface de objetos interessados (**Observer**) nas mudanças do (**Subject**) e defina a função para receber notificações para que as classes concretas (**ConcreteObserver**) possa implementar.
+1. Crie uma interface de objetos interessados (**Observador**) nas mudanças do (**ObjetoDeInteresse**) e defina a função para receber notificações para que as classes concretas (**ObjetoConcreto**) possa implementar.
 
     ```c#
-    namespace Observer { 
-      public interface AcaoObserver {
+    namespace Observador { 
+      public interface AcaoAbstrata {
         void notificaAlteracao(Acao acao);
       }
     }
     ```
 
     ```c#
-    namespace ConcreteObserver {
-      public class Corretora: AcaoObserver {
+    namespace ObservadoresConcretos {
+      public class Corretora: Observador {
         private string nome;
     
         public Corretora(string nome) {
@@ -50,10 +47,10 @@ Atribui aos objetos que tem seus estados alterados a tarefa de notificar os obje
     }
     ```
 
-2. Crie a interface (**Subject**) que irá padronizar os objetos que serão observados (**ConcreteSubject**), essa classe leva a definição ou implementação de registrar o interessado na lista de interessados e remover ele dessa lista.
+2. Crie a interface (**ObjetoObservadoAbstrato**) que irá padronizar os objetos que serão observados (**ObjetoObservador**), essa classe leva a definição ou implementação de registrar o interessado na lista de interessados e remover ele dessa lista.
 
     ```c#
-    namespace Subject {
+    namespace ObjetoObservado {
       public class Acao {
         private string codigo;
         private double valor;
@@ -65,11 +62,11 @@ Atribui aos objetos que tem seus estados alterados a tarefa de notificar os obje
           this.valor = valor;
         }
     
-        public void registraInteressado(AcaoObserver interessado) {
+        public void registraInteressado(Observador interessado) {
           this.interessados.Add(interessado);
         }
     
-        public void cancelaInteresse(AcaoObserver interessado) {
+        public void cancelaInteresse(Observador interessado) {
           this.interessados.Remove(interessado);
         }
     
@@ -79,7 +76,7 @@ Atribui aos objetos que tem seus estados alterados a tarefa de notificar os obje
     
         public void setValor(double valor) {
           this.valor = valor;
-          foreach (AcaoObserver interessado in this.interessados) {
+          foreach (Observador interessado in this.interessados) {
             interessado.notificaAlteracao(this);
           }
         }
@@ -91,12 +88,12 @@ Atribui aos objetos que tem seus estados alterados a tarefa de notificar os obje
     }
     ```
 
-3. O método de **setState()** do (**Subject**) irá modificar o valor dos objetos observados e irá percorrer a lista de observadores notificando eles que houve mudanças nos objetos observados.
+3. O método de **setState()** do (**ObjetoObservado**) irá modificar o valor dos objetos observados e irá percorrer a lista de observadores notificando eles que houve mudanças nos objetos observados.
 
     ```c#
     public void setValor(double valor) {
       this.valor = valor;
-      foreach (AcaoObserver interessado in this.interessados) {
+      foreach (Observador interessado in this.interessados) {
         interessado.notificaAlteracao(this);
       }
     }

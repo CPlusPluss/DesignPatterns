@@ -1,7 +1,4 @@
 ## Memento
-***
-#### Definição
-***
 
 Sem violar o encapsulamento, capturar e externalizar um estado interno de um objeto, de maneira que o objeto possa ser restaurado para esse
 estado mais tarde.
@@ -10,58 +7,58 @@ estado mais tarde.
 #### Diagrama de Classe
 ***
 
-![memento](https://cloud.githubusercontent.com/assets/14116020/26141399/064ffe3a-3ab2-11e7-9ef7-11e173b06201.png)
+![memento](https://cloud.githubusercontent.com/assets/14116020/26286168/c5767b10-3e34-11e7-87e5-bfd605ab7eb9.png)
 
-* **Memento (TextoMemento)**: Ela simplesmente mantém a String que representa o texto e oferece um getter para esta String, permitindo que ela
+* **Memoria (Memoria)**: Ela simplesmente mantém a String que representa o texto e oferece um getter para esta String, permitindo que ela
   seja recuperada mais tarde
 
-* **CareTaker (TextoCareTaker)**: O Caretaker vai guardar todos os Memento, permitindo que eles sejam restaurados.
+* **Guardador (GuardadorDeTexto)**: O Guardador vai guardar todos as Memorias, permitindo que eles sejam restaurados.
 
-* **Originator (Texto)**: Armazena o subconjunto do estado do objeto em um outro objeto memento
+* **Originador (Texto)**: Armazena o subconjunto do estado do objeto em um outro objeto memoria
 
 ***
 #### Implementação
 ***
 
-1. Primeiro crie a classe TextoMemento (**Memento**) que será responsavel por manter a string que representa o texto e oferecer os getters e
+1. Primeiro crie a classe TextoMemoria (**Memoria**) que será responsavel por manter a string que representa o texto e oferecer os getters e
    setters, permitindo que ela seja recuperada mais tarde.
 
     ```c#
-    namespace Memento {
-      public class TextoMemento {
-        protected string estadoTexto;
+    namespace Memoria {
+      public class Memoria {
+        protected string estadoDoTexto;
       
-        public TextoMemento(string texto) {
-          estadoTexto = texto;
+        public Memoria(string texto) {
+          estadoDoTexto = texto;
         }
       
         public string getTextoSalvo() {
-          return estadoTexto;
+          return estadoDoTexto;
         }
       }
     }
     ```
 
-2. Agora vamos criar o TextoCareTaker que irá guardar todos os TextoMemento, permitindo que eles sejam recuperados
+2. Agora vamos criar o GuardadorDeTexto que irá guardar todos os Memoria, permitindo que eles sejam recuperados
 
     ```c#
-    namespace CareTaker {
-      public class TextoCareTaker {
-        protected List<TextoMemento> estados;
+    namespace Guardador {
+      public class GuardadosDeTexto {
+        protected List<Memoria> estados;
       
-        public TextoCareTaker() {
-          estados = new List<TextoMemento>();
+        public GuardadorDeTexto() {
+          estados = new List<Memoria>();
         }
       
-        public void adicionarMemento(TextoMemento memento) {
-          estados.Add(memento);
+        public void adicionarMemoria(Memoria memoria) {
+          estados.Add(memoria);
         }
       
-        public TextoMemento getUltimoEstadoSalvo() {
+        public Memotira getUltimoEstadoSalvo() {
           if (estados.Count <= 0) {
-            return new TextoMemento("");
+            return new Memoria("");
           }
-          TextoMemento estadoSalvo = estados[estados.Count -1];
+          Memoria estadoSalvo = estados[estados.Count -1];
           estados.Remove(estados.Count - 1);
           return estadoSalvo;
         }
@@ -72,23 +69,23 @@ estado mais tarde.
 3. Vamos criar a classe texto que possui uma interface que permite escrever um texto, desfazer a operação de escrita e exibir o texto no terminal.
 
     ```c#
-    namespace Originator {
+    namespace Originador {
       public class Texto {
         protected string texto;
-        TextoCareTaker careTaker;
+        GuardadorDeTexto guardador;
       
         public Texto() {
-          careTaker = new TextoCareTaker();
+          guardador = new GuardadorDeTexto();
           texto = "";
         }
       
         public void escreverTexto(string novoTexto) {
-          careTaker.adicionarMemento(new TextoMemento(texto));
+          guardador.adicionarMemoria(new Memoria(texto));
           texto += novoTexto;
         }
       
         public void desfazerEscrita() {
-          texto = careTaker.getUltimoEstadoSalvo().getTextoSalvo();
+          texto = guardador.getUltimoEstadoSalvo().getTextoSalvo();
         }
       
         public void mostrarTexto() {

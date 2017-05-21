@@ -1,6 +1,4 @@
 ## State
-#### Definição
-***
 
 Alterar o comportamento de um determinado objeto de acordo com o estado no qual ele se encontra, por exemplo, no jogo do mario, ao pegar um
 cogumelo o estado interno do personagem muda e vira um mario grande, e ao pegar um peninha ele aprende a voar, mudando o estado interno do
@@ -10,143 +8,143 @@ personagem.
 #### Diagrama de classe
 ***
 
-![state](https://cloud.githubusercontent.com/assets/14116020/26089297/f9746320-39d2-11e7-9a17-14667e1c767f.png)
+![state](https://cloud.githubusercontent.com/assets/14116020/26286256/f780b628-3e36-11e7-8d69-118cb0f08281.png)
 
-* **State (MarioState)**: Interface para padronizar os estados do Context.
+* **Estado (MarioEstado)**: Interface para padronizar os estados do Contexto.
 
-* **ConcreteState (MarioCapa, MarioFogo, MarioGrande, MarioMorto, MarioPequeno)**: Implementação particular de um State. 
+* **EstadoConcreto (MarioCapa, MarioFogo, MarioGrande, MarioMorto, MarioPequeno)**: Implementação particular de um Estado. 
 
-* **Contexto (Mario)**: Mantém uma referência para um State que define o estado atual.
+* **Contexto (Mario)**: Mantém uma referência para um Estado que define o estado atual.
 
 ***
 #### Implementação
 ***
 
-1. Crie uma interface que define métodos para todos os tipos de estados internos do objeto (**State**)
+1. Crie uma interface que define métodos para todos os tipos de estados internos do objeto (**Estado**)
 
     ```c#
-    namespace State {
-      public interface MarioState {
-        MarioState pegarCogumelo();
-        MarioState pegarFlor();
-        MarioState pegarPena();
-        MarioState levarDano();
+    namespace Estado {
+      public interface MarioEstado {
+        MarioEstado pegarCogumelo();
+        MarioEstado pegarFlor();
+        MarioEstado pegarPena();
+        MarioEstado levarDano();
       }
     }
     ```
 
 2. Crie classes para método definido na interface, implemente o método retornando o novo método ou estado atual do objeto, por exemplo, se o
-   Mario tiver MarioPequeno e pegarCogumelo() ele vai para o estado MarioGrande e assim por diante. (**ConcreteState**)
+   Mario tiver MarioPequeno e pegarCogumelo() ele vai para o estado MarioGrande e assim por diante. (**EstadoConcreto**)
 
     ```c#
-    namespace ConcreteState {
+    namespace EstadoConcreto {
       public class MarioPequeno: MarioState {
-        public MarioState pegarCogumelo() {
+        public MarioEstado pegarCogumelo() {
           Console.WriteLine("Mario ficou grande!");
           return new MarioGrande();
         }
 
-        public MarioState pegarFlor() {
+        public MarioEstado pegarFlor() {
           Console.WriteLine("Mario ficou grande e com poder de fogo!");
           return new MarioFogo();
         }
 
-        public MarioState pegarPena() {
+        public MarioEstado pegarPena() {
           Console.WriteLine("Mario grande com capa");
           return new MarioCapa();
         }
 
-        public MarioState levarDano() {
+        public MarioEstado levarDano() {
           Console.WriteLine("Mario morto");
           return new MarioMorto();
         }
       }
   
-      public class MarioGrande: MarioState {
-        public MarioState pegarCogumelo() {
+      public class MarioGrande: MarioEstado {
+        public MarioEstado pegarCogumelo() {
           Console.WriteLine("Mario ganhou 1000 pontos!");
           return new MarioGrande();
         }
 
-        public MarioState pegarFlor() {
+        public MarioEstado pegarFlor() {
           Console.WriteLine("Mario ficou com poder de fogo!");
           return new MarioFogo();
         }
 
-        public MarioState pegarPena() {
+        public MarioEstado pegarPena() {
           Console.WriteLine("Mario com capa");
           return new MarioCapa();
         }
 
-        public MarioState levarDano() {
+        public MarioEstado levarDano() {
           Console.WriteLine("Mario morto");
           return new MarioMorto();
         }
       }
   
-      public class MarioCapa: MarioState {
-        public MarioState pegarCogumelo() {
+      public class MarioCapa: MarioEstado {
+        public MarioEstado pegarCogumelo() {
           Console.WriteLine("Mario ganhou 1000 pontos!");
           return new MarioGrande();
         }
 
-        public MarioState pegarFlor() {
+        public MarioEstado pegarFlor() {
           Console.WriteLine("Mario ficou com poder de fogo!");
           return new MarioFogo();
         }
 
-        public MarioState pegarPena() {
+        public MarioEstado pegarPena() {
           Console.WriteLine("Mario ganhou 1000 pontos!");
           return new MarioCapa();
         }
 
-        public MarioState levarDano() {
+        public MarioEstado levarDano() {
           Console.WriteLine("Mario morto");
           return new MarioMorto();
         }
       }
   
-      public class MarioFogo: MarioState {
-        public MarioState pegarCogumelo() {
+      public class MarioFogo: MarioEstado {
+        public MarioEstado pegarCogumelo() {
           Console.WriteLine("Mario ganhou 1000 pontos!");
           return new MarioGrande();
         }
 
-        public MarioState pegarFlor() {
+        public MarioEstado pegarFlor() {
           Console.WriteLine("Mario ganhou 1000 pontos!");
           return new MarioFogo();
         }
 
-        public MarioState pegarPena() {
+        public MarioEstado pegarPena() {
           Console.WriteLine("Mario com capa!");
           return new MarioCapa();
         }
 
-        public MarioState levarDano() {
+        public MarioEstado levarDano() {
           Console.WriteLine("Mario morto");
           return new MarioMorto();
         }
       }
   
-      public class MarioMorto: MarioState {
+      public class MarioMorto: MarioEstado {
         public MarioMorto() {
           Console.WriteLine("GameOver!");
           Console.WriteLine("Jogue novamente!");
         }
 
-        public MarioState pegarCogumelo() {
+        public MarioEstado pegarCogumelo() {
           return new MarioPequeno().pegarCogumelo();
         }
 
-        public MarioState pegarFlor() {
+        public MarioEstado pegarFlor() {
           return new MarioPequeno().pegarFlor();
         }
 
-        public MarioState pegarPena() {
+        public MarioEstado pegarPena() {
           return new MarioPequeno().pegarPena();
         }
 
-        public MarioState levarDano() {
+        public MarioEstado levarDano() {
           Console.WriteLine("Mario morto");
           return new MarioPequeno().levarDano();
         }
@@ -158,9 +156,9 @@ personagem.
    exemplo:
 
     ```c#
-    namespace Context {
+    namespace Contexto {
       public class Mario {
-        protected MarioState estado;
+        protected MarioEstado estado;
       
         public Mario() {
           estado = new MarioPequeno();

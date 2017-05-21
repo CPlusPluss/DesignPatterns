@@ -1,7 +1,4 @@
 ## Strategy
-***
-#### Definição
-***
 
 O padrão Strategy é muito útil quando temos um conjunto de algoritmos similares, e precisamos alternar entre eles em diferentes pedaços da
 aplicação.
@@ -12,32 +9,32 @@ A ideia fundamental desse padrão é possibilitar facilmente a variação do alg
 #### Diagrama de classe
 ***
 
-![strategy](https://cloud.githubusercontent.com/assets/14116020/26089864/375fcee6-39d7-11e7-879b-4d5173804dd4.png)
+![strategy](https://cloud.githubusercontent.com/assets/14116020/26229921/8700fc18-3c1b-11e7-9a28-a07db9cda4d9.png)
 
-* **Strategy (CalculaImposto)**: Interface para padronizar as diferentes estratégias de um algoritmo.
+* **Estrategia (CalculaImposto)**: Interface para padronizar as diferentes estratégias de um algoritmo.
 
-* **ConcreteStrategy (CalculaImpostoQuinzeOuDez, CalculaImpostoVinteOuQuinze)**: Implementação particular de um Strategy.
+* **EstrategiaConcreta (CalculaImpostoQuinzeOuDez, CalculaImpostoVinteOuQuinze)**: Implementação particular de uma estrategia.
 
-* **Context (Funcionario)**: Mantém uma referência para um objeto Strategy e pode permitir que esse acesse os seus dados.
+* **Contexto (Funcionario)**: Mantém uma referência para um objeto Strategia e pode permitir que esse acesse os seus dados.
 
 ***
 #### Implementação
 ***
 
-1. Primeiro vamos encapsular todos os algoritmos da mesma familia na interface (**Strategy**).
+1. Primeiro vamos encapsular todos os algoritmos da mesma familia na interface (**Strategia**).
 
     ```c#
-    namespace Strategy {
+    namespace Strategia {
       public interface CalculaImposto {
         double calculaSalarioComImposto(Funcionario funcionario);
       }
     }    
     ```
 
-2. Uma vez definida a classe, vamos definir as estrategias concretas (**ConcreteStrategy**)
+2. Uma vez definida a classe, vamos definir as estrategias concretas (**EstrategiaConcreta**)
 
     ```c#
-    namespace ConcreteStrategy {
+    namespace EstrategiaConcreta {
       public class CalculaImpostoQuinzeOuDez: CalculaImposto {
         public double calculaSalarioComImposto(Funcionario funcionario) {
           if (funcionario.getSalarioBase() > 2000) {
@@ -58,7 +55,7 @@ A ideia fundamental desse padrão é possibilitar facilmente a variação do alg
     }
     ```
 
-3. Agora só criar o (**Context**) na qual a estrategia irá se aplicar
+3. Agora só criar o (**Contexto**) na qual a estrategia irá se aplicar
 
     ```c#
     namespace Context {

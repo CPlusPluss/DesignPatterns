@@ -1,7 +1,4 @@
 ## Interpreter
-***
-#### Definição
-***
 
 Reconhecer padrões é um problema bem complicado, no entanto, quando conseguimos formular uma gramática para o problema a solução fica bem mais
 fácil.
@@ -15,16 +12,16 @@ sentenças dessa linguagem.
 #### Diagrama de classe
 ***
 
-![interpreter](https://cloud.githubusercontent.com/assets/14116020/26143150/0e9298ac-3aba-11e7-9fbc-80db9baadbb5.png)
+![interpreter](https://cloud.githubusercontent.com/assets/14116020/26278888/67dc33e6-3d7b-11e7-9fa2-0f0a9e5bd441.png)
 
 ***
 #### Implementação
 ***
 
-1. Crie o contexto (**Context**)
+1. Crie o contexto (**Contexto**)
 
     ```c#
-    namespace Context {
+    namespace Contexto {
       public class Contexto {
         protected string input;
         protected int output;
@@ -52,11 +49,11 @@ sentenças dessa linguagem.
     }
     ```
 
-2. Crie a classe abstrata que terá a lógica da gramática (**AbstractExpression**)
+2. Crie a classe abstrata que terá a lógica da gramática (**InterpretadorAbstrato**)
 
     ```c#
-    namespace AbstractExpression {
-      public abstract class NumeroRomanoInterpreter {
+    namespace InterpretadorAbstrato {
+      public abstract class InterpretadorDeNumerosRomanos {
         public void interpretar(Contexto contexto) {
           if (contexto.getInput().Length == 0) {
             return;
@@ -102,11 +99,11 @@ sentenças dessa linguagem.
     }
     ```
 
-3. Crie a implementação dos métodos dessa classe abstrata (**TerminalExpression**)
+3. Crie a implementação dos métodos dessa classe abstrata (**InterpretadorConcreto**)
 
     ```c#
-    namespace TerminalExpression {
-      public class UmDigitoRomano: NumeroRomanoInterpreter {
+    namespace InterpretadorConcreto {
+      public class UmDigitoRomano: InterpretadorDeNumerosRomanos {
         public override string um() {
           return "I";
         }
@@ -128,7 +125,7 @@ sentenças dessa linguagem.
         }
       }
     
-      public class DoisDigitosRomano: NumeroRomanoInterpreter {
+      public class DoisDigitosRomano: InterpretadorDeNumerosRomanos {
         public override string um() {
           return "X";
         }
@@ -150,7 +147,7 @@ sentenças dessa linguagem.
         }
       }
     
-      public class TresDigitosRomano: NumeroRomanoInterpreter {
+      public class TresDigitosRomano: InterpretadorDeNumerosRomanos {
         public override string um() {
           return "C";
         }
@@ -172,7 +169,7 @@ sentenças dessa linguagem.
         }
       }
     
-      public class QuatroDigitosRomano: NumeroRomanoInterpreter {
+      public class QuatroDigitosRomano: InterpretadorDeNumerosRomanos {
         public override string um() {
           return "M";
         }
@@ -210,7 +207,7 @@ sentenças dessa linguagem.
         string numeroRomano = "cxciv";
         Contexto contexto = new Contexto(numeroRomano);
     
-        foreach (NumeroRomanoInterpreter interpreter in interpretadores) {
+        foreach (InterpretadorDeNumerosRomanos interpreter in interpretadores) {
           interpreter.interpretar(contexto);
         }
     

@@ -1,7 +1,4 @@
 ## Iterator
-***
-#### Definição
-***
 
 Fornecer um modo eficiente para percorrer sequencialmente os elementos de uma coleção, sem que a estrutura interna da coleção seja exposta.
 
@@ -12,36 +9,35 @@ Isso pode facilitar a criação de uma lista única independe do tipo de lista n
 #### Diagrama de classe
 ***
 
-![iterator](https://cloud.githubusercontent.com/assets/14116020/26138806/18bd8a8e-3aa2-11e7-82e8-0ac2e16d38f1.png)
+![iterator](https://cloud.githubusercontent.com/assets/14116020/26286031/e0aced2c-3e31-11e7-8900-a3fbbdff0ab0.png)
 
+* **Iterador (IteradorInterface)**: Define a interface dos objetos que encapsulam toda a complexidade para percorrer os elementos do Agregador.
 
-* **Iterator (AgregadoDeCanais)**: Define a interface dos objetos que encapsulam toda a complexidade para percorrer os elementos do Aggregate.
+* **IteradorConcreto (IteradorDeCanais)**: Implementação da interface Iterador para um tipo específico de Agregador.
 
-* **ConcreteIterator (CanaisEsporte, CanaisFilme)**: Implementação da interface Iterator para um tipo específico de Aggregate.
+* **Agregador (ConjuntoDeCanais)**: Define a interface das coleções de objetos que podem ter seus elementos percorridos através de um Iterador.
 
-* **Aggregate (IteradorInterface)**: Define a interface das coleções de objetos que podem ter seus elementos percorridos através de um Iterator.
-
-* **ConcreteAggregate (IteradorListaDeCanais, IteradorArrayDeCanais)**: Estrutura de dados que implementa o Aggregate.
+* **AgregadorConcreto (CanaisEsporte, CanaisFilme)**: Estrutura de dados que implementa o Agregador.
 
 ***
 #### Implementação
 ***
 
-1. Inicialmente vamos criar uma interface comum à todos os objetos agregados, ou seja uma lista genérica (**Aggregate**)
+1. Inicialmente vamos criar uma interface comum à todos os objetos agregados, ou seja uma lista genérica (**Agregador**)
 
     ```c#
-    namespace Aggregate {
-      public interface AgregadoDeCanais {
-        IteratorCanais criarIterator();
+    namespace Agregador {
+      public interface ConjuntoDeCanais {
+        IteradorDeCanais criarIterator();
       }
     }
     ```
 
-2. Agora vamos criar uma lista particular (**ConcreteAggregate**)
+2. Agora vamos criar uma lista particular (**AgregadorConcreto**)
 
     ```c#
-    namespace ConcreteAggregate {
-      public class CanaisEsporte: AgregadoDeCanais {
+    namespace AgregadoresConcretos {
+      public class CanaisEsporte: ConjuntoDeCanais {
         private List<Canal> canais;
     
         public CanaisEsporte() {
@@ -53,18 +49,18 @@ Isso pode facilitar a criação de uma lista única independe do tipo de lista n
           canais.Add(new Canal("Campeonato Brasileiro"));
         }
     
-        public IteratorCanais criarIterator() {
-          return new IteratorCanais(canais);
+        public IteradorDeCanais criarIterator() {
+          return new IteradorDeCanais(canais);
         }
       }
     }
     ```
 
-3. Agora vamos a iterface que ira definir o iterator que irá percorrer a lista (**Iterator**)
+3. Agora vamos a iterface que ira definir o iterador que irá percorrer a lista (**Iterador**)
 
     ```c#
-    namespace Iterator {
-      public interface IteratorInterface {
+    namespace Iterador {
+      public interface IteradorInterface {
         void first();
         void next();
         void back();
@@ -75,15 +71,15 @@ Isso pode facilitar a criação de uma lista única independe do tipo de lista n
     }
     ```
 
-4. Com isso vamos criar os iteradores concretos (**ConcreteIterator**)
+4. Com isso vamos criar os iteradores concretos (**IteradorConcreto**)
 
     ```c#
-    namespace ConcreteIterator {
-      public class IteratorCanais: IteratorInterface {
+    namespace IteradoresConcretos {
+      public class IteradorDeCanais: IteradorInterface {
         protected List<Canal> lista;
         protected int contador;
     
-        public IteratorCanais(List<Canal> lista) {
+        public IteradorDeCanais(List<Canal> lista) {
           this.lista = lista;
           contador = 0;
         }
@@ -124,23 +120,23 @@ Isso pode facilitar a criação de uma lista única independe do tipo de lista n
     ```c#
     class Testes {
       public static void Main(string[] args) {
-        AgregadoDeCanais canais = new CanaisEsporte();
-        IteratorInterface iterator;
-        for (iterator = canais.criarIterator(); !iterator.isDone(); iterator.next()) {
-          Console.WriteLine(iterator.currentItem().getNome());
+        ConjuntoDeCanais canais = new CanaisEsporte();
+        IteradorInterface iterador;
+        for (iterador = canais.criarIterador(); !iterador.isDone(); iterador.next()) {
+          Console.WriteLine(iterador.currentItem().getNome());
         }
-        Console.WriteLine("\nQuantidade de canais: " + iterator.count() + "\n");
+        Console.WriteLine("\nQuantidade de canais: " + iterador.count() + "\n");
     
-        iterator.next();
-        Console.WriteLine(iterator.currentItem().getNome());
-        iterator.next();
-        Console.WriteLine(iterator.currentItem().getNome());
-        iterator.next();
-        Console.WriteLine(iterator.currentItem().getNome());
-        iterator.back();
-        Console.WriteLine(iterator.currentItem().getNome());
-        iterator.first();
-        Console.WriteLine(iterator.currentItem().getNome());
+        iterador.next();
+        Console.WriteLine(iterador.currentItem().getNome());
+        iterador.next();
+        Console.WriteLine(iterador.currentItem().getNome());
+        iterador.next();
+        Console.WriteLine(iterador.currentItem().getNome());
+        iterador.back();
+        Console.WriteLine(iterador.currentItem().getNome());
+        iterador.first();
+        Console.WriteLine(iterador.currentItem().getNome());
       }
     }
     ```

@@ -1,7 +1,4 @@
 ## Chain of Responsability
-***
-#### Definição
-***
 
 Usado para acabar com estruturas de decisão, evitando o acoplamento utilizando uma cadeia de solicitações até que uma trate
 
@@ -12,11 +9,11 @@ os objetos receptores, passando a solicitação ao longo da cadeia até que um o
 #### Diagrama de classe
 ***
 
-![chainofresponsability](https://cloud.githubusercontent.com/assets/14116020/26142120/8bb292e2-3ab5-11e7-87da-5d8b49cb704f.png)
+![chainofresponsability](https://cloud.githubusercontent.com/assets/14116020/26278776/037c433e-3d79-11e7-9006-f13473f590f5.png)
 
-* **Handle**: Classe abstrata que irá definir quem é o próximo da lista de responsabilidade
+* **CorrenteAbstrata**: Classe abstrata que irá definir quem é o próximo da lista de responsabilidade
 
-* **ConcreteHandle**: Define a implementação das classes concretas que farão parte desse corrente
+* **CorrenteConcreta**: Define a implementação das classes concretas que farão parte desse corrente
 
 ***
 #### Implementação
@@ -25,7 +22,7 @@ os objetos receptores, passando a solicitação ao longo da cadeia até que um o
 1. Crie a classe abstrata que irá definir quem é o proximo da lista de responsabilidade
 
     ```c#
-    namespace Handler {
+    namespace CorrenteAbstrata {
       public abstract class BancoChain {
         protected BancoChain next;
         protected IDBancos identificadorDoBanco;
@@ -69,7 +66,7 @@ os objetos receptores, passando a solicitação ao longo da cadeia até que um o
 2. Defina a implementação das classes concretas que farão parte desse corrente
 
     ```c#
-    namespace ConcreteHandler {
+    namespace CorrentesConcreta {
       public class BancoA: BancoChain {
         public BancoA(): base(IDBancos.bancoA) {}
     

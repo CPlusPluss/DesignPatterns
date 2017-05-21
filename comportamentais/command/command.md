@@ -1,7 +1,4 @@
 ## Command
-***
-#### Definição
-***
 
 Controlar as chamadas a um determinado componente, modelando cada requisição como um objeto. Permitir que as operações possam ser desfeitas,
 enfileiradas ou registradas através de comandos.
@@ -13,15 +10,15 @@ ou coisa do tipo).
 #### Diagrama de classe
 ***
 
-![command](https://cloud.githubusercontent.com/assets/14116020/26088703/074c85da-39cf-11e7-9d2e-c3f46662c6c2.png)
+![command](https://cloud.githubusercontent.com/assets/14116020/26278856/a34ed506-3d7a-11e7-9e43-46e45334bd69.png)
 
-* **Command (Comando)**: Define uma interface para a execução dos métodos do Receiver.
+* **ComandoAbstrato (Comando)**: Define uma interface para a execução dos métodos do Receiver.
 
-* **ConcreteCommand (TocarMusica, AumentarVolume, DiminuirVolume)**: Classe que implementa Command e modela uma operação específica do Receiver.
+* **ComandoConcreto (TocarMusica, AumentarVolume, DiminuirVolume)**: Classe que implementa ComandoAbstrato e modela uma operação específica do Receiver.
 
-* **Invoker (ListaDeComandos)**: Classe que armazena os Commands que devem ser executados.
+* **Invocador (ListaDeComandos)**: Classe que armazena os Commands que devem ser executados.
 
-* **Receiver (Player)**: Define os objetos que terão as chamadas aos seus métodos controladas.
+* **Receptor (Player)**: Define os objetos que terão as chamadas aos seus métodos controladas.
 
 * **Cliente**: Instancia os Commands associando-os ao Receiver e armazena-os no Invoker.
 
@@ -29,10 +26,10 @@ ou coisa do tipo).
 #### Implementação
 ***
 
-1. Crie uma (**Receiver**) para rodar os comandos de **Command**
+1. Crie uma (**Receptor**) para rodar os comandos de **Comando**
 
     ```c#
-    namespace Receiver {
+    namespace Receptor {
       public class Player {
         public void play(string fileName) {
           Console.WriteLine("Tocando o arquivo " + fileName);
@@ -49,20 +46,20 @@ ou coisa do tipo).
     }
     ```
 
-2. Crie a interface (**Command**) que será implementada pela ConcreteCommand através do método **executa()**
+2. Crie a interface (**Comando**) que será implementada pela ComandoConcreto através do método **executa()**
 
     ```c#
-    namespace Command {
+    namespace Comando {
       public interface Comando {
         void executa();
       }
     }
     ```
 
-3. Crie cada comando (**ConcreteCommand**) que será inserido na lista de comandos e associados ao **Receiver**
+3. Crie cada comando (**ComandoConcreto**) que será inserido na lista de comandos e associados ao **Receptor**
 
     ```c#
-    namespace ConcreteCommand {
+    namespace ComandosConcreto {
       public class TocaMusica: Comando {
         private Player player;
         private string file;
@@ -107,11 +104,11 @@ ou coisa do tipo).
     }
     ```
 
-4. Crie o (**Invoker**) que armazenará a lista de comandos através do método adiciona() executará todos os comandos da lista através do método
+4. Crie o (**Invocador**) que armazenará a lista de comandos através do método adiciona() executará todos os comandos da lista através do método
    executa()
 
     ```c#
-    namespace Invoker {
+    namespace Invocador {
       public class ListaDeComandos {
         private List<Comando> comandos = new List<Comando>();
     
@@ -128,7 +125,7 @@ ou coisa do tipo).
     }
     ```
 
-5. Crie a cliente que irá instanciar um Receiver e o Invoker adicionado cada ConcreteCommand dentro do Invoker e executando-o
+5. Crie a cliente que irá instanciar um Receptor e o Invocador adicionado cada ComandoConcreto dentro do Invocador e executando-o
 
     ```c#
     class Testes {
