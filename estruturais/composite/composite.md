@@ -6,7 +6,7 @@ Agrupa objetos que fazem parte de uma relação parte-todo de forma a tratá-los
 #### Diagrama de classe
 ***
 
-![composite](https://cloud.githubusercontent.com/assets/14116020/26187144/23d7d174-3b6d-11e7-92f2-660c57843ff1.png)
+![composite](https://cloud.githubusercontent.com/assets/14116020/26229936/9d08b6c2-3c1b-11e7-8408-02b74c75eb31.png)
 
 * **ComponenteAbstrato (Trecho)**: Interface que define os elementos da composição.
 

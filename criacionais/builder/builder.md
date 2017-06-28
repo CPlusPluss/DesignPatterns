@@ -7,7 +7,7 @@ criados com implementações distintas de cada passo.
 #### Diagrama de classe
 ***
 
-![builder](https://cloud.githubusercontent.com/assets/14116020/26184556/20f84e22-3b5c-11e7-946a-5211bfaeef48.png)
+![builder](https://cloud.githubusercontent.com/assets/14116020/26229940/a14f7608-3c1b-11e7-8afd-b78d8b1f63fb.png)
 
 * **ProdutoAbstrato (Carro)**: Interface que define os objetos que devem ser construídos pelos Construtores.
 
